@@ -2,6 +2,8 @@
 from pathlib import Path
 import hashlib
 import re
+import csv
+import json
 
 root = Path(__file__).resolve().parents[1]
 errors = []
@@ -25,6 +27,13 @@ if skill != (root / 'dist/SKILL.md').read_bytes():
 expected = hashlib.sha256(skill).hexdigest() + '  SKILL.md\n'
 if (root / 'dist/SHA256SUMS.txt').read_text() != expected:
     errors.append('Incorrect skill checksum')
+with (root / 'dist/public-kit-population-2020-2024.csv').open(encoding='utf8', newline='') as stream:
+    exported = list(csv.DictReader(stream))
+observations = json.loads((root / 'data/verified-example.json').read_text(encoding='utf8'))['response'][1]
+actual = {(r['iso3'], r['year']): (r['population'], r['footnote']) for r in exported}
+wanted = {(r['countryiso3code'], r['date']): (str(r['value']), r.get('footnote','')) for r in observations}
+if len(exported) != 15 or actual != wanted:
+    errors.append('CSV does not preserve all 15 observations and footnotes')
 if errors:
     raise SystemExit('\n'.join(errors))
-print('Release audit passed: local links, private-material patterns, identical skill and checksum.')
+print('Release audit passed: local links, private-material patterns, identical skill and checksum, complete CSV with footnotes.')

@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc"><title id="title">Public Kit</title><desc id="desc">Public data, analysis and decision tools. One skill for Codex and Claude, by Ievgen Kylymnyk.</desc><rect width="1280" height="360" fill="#234d3a"/><path d="M875 0V360M1005 0V360M1135 0V360M875 100H1280M875 230H1280" stroke="#45664e"/><rect x="1005" y="100" width="130" height="130" fill="#d9f38c"/><text x="64" y="62" fill="#c4d5c6" font-family="monospace" font-size="13" letter-spacing="2">ONE SKILL / CODEX + CLAUDE</text><text x="59" y="183" fill="#fafbf8" font-family="Segoe UI,Arial,sans-serif" font-size="96" letter-spacing="-5">Public Kit</text><text x="64" y="238" fill="#e4ede1" font-family="Segoe UI,Arial,sans-serif" font-size="25">Public data, analysis and decision tools.</text><text x="64" y="315" fill="#c4d5c6" font-family="monospace" font-size="14">BY IEVGEN KYLYMNYK / OPEN SOURCE</text><text x="1024" y="191" fill="#234d3a" font-family="Georgia,serif" font-size="82" font-weight="bold" letter-spacing="-9">pk</text><text x="905" y="280" fill="#c4d5c6" font-family="monospace" font-size="13">SKILL.md</text><text x="905" y="307" fill="#c4d5c6" font-family="monospace" font-size="12">READ. ADAPT. USE.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">Public Kit</title>
+  <desc id="desc">Use public data through a conversation. One SKILL.md for Codex and Claude Code, by Ievgen Kylymnyk.</desc>
+  <rect width="1280" height="360" fill="#17372f"/>
+  <path d="M64 280H1216" stroke="#48665c"/>
+  <text x="64" y="62" fill="#d9ecc4" font-family="Segoe UI,Arial,sans-serif" font-size="17" letter-spacing="1">CODEX + CLAUDE CODE</text>
+  <text x="58" y="177" fill="#fafbf8" font-family="Segoe UI,Arial,sans-serif" font-size="100" font-weight="600" letter-spacing="-5">Public Kit</text>
+  <text x="64" y="233" fill="#e0e8df" font-family="Segoe UI,Arial,sans-serif" font-size="27">Use public data through a conversation.</text>
+  <rect x="936" y="64" width="280" height="168" rx="6" fill="#d9ecc4"/>
+  <text x="964" y="120" fill="#17372f" font-family="Consolas,monospace" font-size="31">SKILL.md</text>
+  <path d="M964 143H1188" stroke="#9bac91"/>
+  <text x="964" y="180" fill="#17372f" font-family="Segoe UI,Arial,sans-serif" font-size="20">16 institutional APIs</text>
+  <text x="964" y="210" fill="#17372f" font-family="Segoe UI,Arial,sans-serif" font-size="20">One file</text>
+  <text x="64" y="324" fill="#baccc2" font-family="Segoe UI,Arial,sans-serif" font-size="18">Ievgen Kylymnyk</text>
+  <text x="1216" y="324" text-anchor="end" fill="#baccc2" font-family="Segoe UI,Arial,sans-serif" font-size="18">Free institutional data · Open-source instructions</text>
+</svg>

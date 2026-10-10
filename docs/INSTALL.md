@@ -1,20 +1,26 @@
 # Install Public Kit
 
-The deliverable is one file: [SKILL.md](../SKILL.md). It includes the workflow, 27 source guides, templates, worked example, attribution and licence. No scripts or adjacent files are required to use the skill.
+Download [SKILL.md](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) and save it in a folder named `public-kit`. Keep the filename uppercase. The file includes instructions, 16 institutional source routes, example requests and the licence; it needs no companion files.
 
-Save the file in a folder named `public-kit`. Keep the filename uppercase `SKILL.md`, as required by the portable skill format.
-
-| Client | Project installation | Personal installation |
+| Client | In one project | For your projects on this machine |
 | --- | --- | --- |
 | Codex | `.agents/skills/public-kit/SKILL.md` | `~/.agents/skills/public-kit/SKILL.md` |
 | Claude Code | `.claude/skills/public-kit/SKILL.md` | `~/.claude/skills/public-kit/SKILL.md` |
 
-The `~` location is your user home. Use a project folder if you want the skill to travel with that project. Start a new session if your client does not discover newly added skills immediately. Invoke `$public-kit` in Codex or `/public-kit` in Claude Code, or ask a question that matches its description.
+The `~` location is your user home. Use a project path to keep the skill with that project's files. Start a new session if the client has not discovered the added skill.
 
-Example: “Use public-kit to compare these service options. Show the evidence, the assumptions and what could change the recommendation.”
+Invoke `$public-kit` in Codex or `/public-kit` in Claude Code, then ask:
 
-Review the file before installing. The skill uses the model and tools available in your session; it does not add connectors, grant data access or install a model. Live requests may require provider accounts and can incur charges. A skill is guidance to the agent, not a guarantee of analytical correctness.
+> Compare population in Moldova, Georgia and Serbia from 2020 to 2024. Show the figures, calculate the change and include the source notes.
 
-The paths above describe Codex and Claude Code. Other Claude surfaces have their own skill upload and account requirements; a local project folder does not automatically install a skill in a cloud account.
+Continue with another country, a shorter period or a different output. The assistant should preserve the context and retrieve new data as needed.
 
-Format and installation references: [Agent Skills specification](https://agentskills.io/specification), [Codex skills](https://developers.openai.com/codex/skills), [Claude Code skills](https://code.claude.com/docs/en/skills).
+## Tools and access
+
+Your session needs an allowed way to fetch URLs or execute HTTP requests. Public Kit provides instructions; your client supplies the model, tools and network permissions. Without retrieval tools or network access, the assistant can prepare a query but cannot verify a live answer.
+
+The included API routes are free within provider limits. NASA FIRMS needs a free MAP_KEY; Copernicus needs a free account, token and acceptance of the selected dataset's terms. Configure those credentials through your approved local secret storage. Most examples require no account. Your existing AI service's usage limits still apply.
+
+These installation paths cover Codex and Claude Code. A local personal folder does not install the skill in Claude Cowork or a cloud account. Those surfaces use their own account-level skill settings.
+
+Official references: [Agent Skills format](https://agentskills.io/specification), [Codex skills](https://learn.chatgpt.com/docs/build-skills), [Claude Code skills](https://code.claude.com/docs/en/skills).

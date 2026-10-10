@@ -1,9 +1,9 @@
 {
   "name": "public-kit",
-  "version": "0.1.0-rc.1",
+  "version": "0.2.0-rc.1",
   "private": true,
   "type": "module",
-  "description": "One portable skill for public data, analysis and decision tools.",
+  "description": "One skill file for using 16 free institutional APIs through Codex or Claude Code.",
   "engines": {"node": ">=22"},
   "scripts": {
     "test": "node --test tests/*.test.mjs",

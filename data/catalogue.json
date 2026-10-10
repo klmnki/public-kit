@@ -1,381 +1,231 @@
 {
-  "schemaVersion": 1,
-  "catalogueReviewedAt": "2026-10-10",
-  "source": "https://genai-builders-api-marketplace.klmnki.chatgpt.site/",
-  "verification": "Provider links and catalogue coverage reviewed. Concise purpose and caveat summaries are mirrored from SKILL.md. Access labels describe the source catalogue; endpoints and terms were not all retested.",
+  "schemaVersion": 2,
+  "reviewedAt": "2026-10-10",
+  "scope": "Free routes operated by public institutions",
   "sources": [
     {
-      "id": "undp-geohub",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "UNDP GeoHub",
-      "useFor": "Geospatial dataset discovery",
-      "documentationUrl": "https://geohub.data.undp.org/",
-      "policyTopics": [
-        "Cities & maps",
-        "Climate & environment",
-        "Development"
-      ],
-      "exampleQuestion": "What UNDP map datasets are available for Moldova, and what areas and periods do they cover?",
-      "limitation": "Metadata is not the underlying data; item coverage and licence vary."
-    },
-    {
-      "id": "world-bank-indicators",
-      "accessClass": "no-registration",
-      "access": "No registration",
+      "id": "world-bank",
       "name": "World Bank Indicators",
+      "operator": "World Bank",
       "useFor": "Country development indicators",
-      "documentationUrl": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392",
-      "policyTopics": [
-        "Development"
-      ],
-      "exampleQuestion": "How has Ghana's population changed between 2020 and 2024?",
-      "limitation": "Preserve indicator definitions, revisions, nulls and actual returned years."
+      "exampleQuestion": "Compare population in Moldova, Georgia and Serbia from 2020 to 2024.",
+      "documentationUrl": "https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures",
+      "access": "Free, no account",
+      "request": "https://api.worldbank.org/v2/country/MDA;GEO;SRB/indicator/SP.POP.TOTL?format=json&source=2&date=2020:2024&per_page=100&footnote=y",
+      "discovery": "Resolve countries with /v2/country?format=json&per_page=400 and indicators through /v2/indicator/{CODE}?format=json. Useful WDI codes: SP.POP.TOTL (population), NY.GDP.MKTP.KD.ZG (annual GDP growth), FP.CPI.TOTL.ZG (annual CPI inflation), SL.UEM.TOTL.ZS (modelled ILO unemployment). Confirm the definition before choosing a measure.",
+      "parse": "JSON is [metadata, observations]. Read pages and total; request page=2 and later pages when needed. Keep countryiso3code, indicator.id, date, value, obs_status and footnote. The unit field can be empty: obtain units from indicator metadata. Use the returned years, not the current year.",
+      "limitation": "Population figures are midyear estimates. In the checked response, Georgia 2024 uses the 2024 census; Moldova 2023 and 2024 are preliminary. Retain these notes when interpreting the series.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "open-meteo",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "Open-Meteo",
-      "useFor": "Coordinate-based weather and forecasts",
-      "documentationUrl": "https://open-meteo.com/en/docs",
-      "policyTopics": [
-        "Climate & environment",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "What weather was forecast for Amman from 28 to 30 August 2026?",
-      "limitation": "Model output is not a station observation; check timezone, usage tier and attribution."
+      "id": "undp-geohub",
+      "name": "UNDP GeoHub",
+      "operator": "UNDP",
+      "useFor": "Find geospatial datasets",
+      "exampleQuestion": "Find public map layers covering Moldova and explain their coverage.",
+      "documentationUrl": "https://geohub.data.undp.org/api/openapi.json",
+      "access": "Free public search, no account",
+      "request": "https://geohub.data.undp.org/api/datasets?query=Moldova&limit=2",
+      "discovery": "Search with query or bbox=minx,miny,maxx,maxy; page with offset. Open the selected dataset metadata before choosing a layer.",
+      "parse": "Read GeoJSON features, properties, links and pages. Identify the dataset, bounds, dates, units and asset format. Follow the selected public asset only when it fits the question.",
+      "limitation": "This request finds metadata. A search match does not establish that a suitable measurement exists. Some assets require separate access or geospatial tools. Log stable dataset links, not signed asset URLs.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "unsd-sdg-api",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "UNSD SDG API",
+      "id": "unsd-sdg",
+      "name": "UN SDG API",
+      "operator": "UN Statistics Division",
       "useFor": "SDG series and disaggregations",
+      "exampleQuestion": "Compare the available under-five mortality observations for Nepal.",
       "documentationUrl": "https://unstats.un.org/SDGAPI/swagger/",
-      "policyTopics": [
-        "Development",
-        "Health"
-      ],
-      "exampleQuestion": "What do the 2020 data show about under-five mortality for girls, boys and all children in Nepal?",
-      "limitation": "Align dimensions, units, area codes, status and footnotes."
+      "access": "Free, no account",
+      "request": "https://unstats.un.org/SDGAPI/v1/sdg/Series/Data?seriesCode=SH_DYN_MORT&areaCode=524&timePeriod=2020&pageSize=2",
+      "discovery": "Discover series through /v1/sdg/Series/List and areas through /v1/sdg/GeoArea/List. Use the series code, not the SDG indicator number; Nepal uses M49 code 524. Read series-specific dimensions before adding filters.",
+      "parse": "Read data, totalElements, totalPages and pageNumber. This sample returns two of three dimensional rows: request page=2 to fetch the remaining page before reporting the selection. Inspect dimensions, sex, units, valueType, status and footnotes before converting string values.",
+      "limitation": "Different dimensions can produce several observations for the same place and year. Do not sum them or choose one without explaining the selection.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "unhcr-refugee-statistics",
-      "accessClass": "no-registration",
-      "access": "No registration",
+      "id": "unhcr",
       "name": "UNHCR Refugee Statistics",
+      "operator": "UNHCR",
       "useFor": "Displacement population statistics",
+      "exampleQuestion": "Find the reported 2024 population categories for people originating from Sudan.",
       "documentationUrl": "https://api.unhcr.org/docs/refugee-statistics.html",
-      "policyTopics": [
-        "Humanitarian"
-      ],
-      "exampleQuestion": "How many refugees, asylum-seekers and other displaced people from Sudan were recorded in 2025?",
-      "limitation": "Distinguish origin/destination and population categories; missing is not zero."
-    },
-    {
-      "id": "crossref",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "Crossref",
-      "useFor": "Publication metadata and DOI discovery",
-      "documentationUrl": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
-      "policyTopics": [
-        "Research"
-      ],
-      "exampleQuestion": "What recent research can we find on urban climate adaptation?",
-      "limitation": "Metadata and citation counts do not establish quality or causality."
-    },
-    {
-      "id": "frankfurter",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "Frankfurter",
-      "useFor": "Public reference exchange rates",
-      "documentationUrl": "https://frankfurter.dev/",
-      "policyTopics": [
-        "Finance"
-      ],
-      "exampleQuestion": "What was one euro worth in US dollars on the latest available date?",
-      "limitation": "Name the date/provider; use mandated accounting rates for official transactions."
+      "access": "Free, no account",
+      "request": "https://api.unhcr.org/population/v1/population/?limit=2&page=1&year=2024&coo=SDN&cf_type=ISO",
+      "discovery": "Use coo for origin and coa for asylum country. Set cf_type=ISO for ISO3 inputs; select year or a documented year range. Request country disaggregation only when needed.",
+      "parse": "Read items, page, maxPages and total. Fetch all needed pages. Preserve category fields and distinguish numbers, numeric strings, nulls and the literal dash.",
+      "limitation": "Origin and asylum answer different questions. Unspecified destination can mean an aggregate. Keep population categories separate; some overlap.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
       "id": "nasa-power",
-      "accessClass": "no-registration",
-      "access": "No registration",
       "name": "NASA POWER",
-      "useFor": "Historical agroclimatology parameters",
+      "operator": "NASA",
+      "useFor": "Historical weather and agroclimatology",
+      "exampleQuestion": "Get daily mean temperature near Chisinau for 1–3 July 2025.",
       "documentationUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
-      "policyTopics": [
-        "Climate & environment"
-      ],
-      "exampleQuestion": "What was the weather like in Dhaka from 20 to 22 August 2025?",
-      "limitation": "Check units, spatial resolution, fill values and revisions."
+      "access": "Free, no account",
+      "request": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M&community=AG&longitude=28.8638&latitude=47.0105&start=20250701&end=20250703&format=JSON",
+      "discovery": "Validate the coordinate and choose parameter codes from the current parameter dictionary. Use YYYYMMDD dates and a short initial interval. Choose daily, monthly or climatology endpoints to match the question.",
+      "parse": "Read properties.parameter, header.fill_value and parameters units. T2M returned C; the fill value was -999. Convert fill values to missing. Retain the time basis and requested coordinate. Respect NASA request limits.",
+      "limitation": "Values represent a gridded product at a location. A point query does not establish a station observation or a citywide exposure estimate.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "usgs-earthquake-hazards",
-      "accessClass": "no-registration",
-      "access": "No registration",
+      "id": "usgs",
       "name": "USGS Earthquake Hazards",
-      "useFor": "Earthquake event searches",
+      "operator": "US Geological Survey",
+      "useFor": "Earthquake event records",
+      "exampleQuestion": "Find examples of magnitude-6-or-greater events in January 2025.",
       "documentationUrl": "https://earthquake.usgs.gov/fdsnws/event/1/",
-      "policyTopics": [
-        "Humanitarian",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "Where did magnitude-5-or-higher earthquakes occur worldwide on 26 August 2026?",
-      "limitation": "Records may change; an event feed is not local protective guidance."
+      "access": "Free, no account",
+      "request": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-01-01&endtime=2025-02-01&minmagnitude=6&orderby=time-asc&limit=5",
+      "discovery": "Set the time and magnitude range, then add a bounding box or radius when the question is local. Use the count endpoint or the documented offset paging to establish completeness.",
+      "parse": "Read features[].properties and geometry.coordinates. Timestamps use UTC milliseconds; coordinates are longitude, latitude, depth. Preserve event IDs, update time and magnitude type.",
+      "limitation": "The sample caps output at five events. Label it a subset, not the full month. Records can revise; event data does not replace local emergency guidance.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "hdx-ckan",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "HDX CKAN",
-      "useFor": "Humanitarian dataset discovery",
+      "id": "hdx",
+      "name": "HDX",
+      "operator": "UN OCHA Centre for Humanitarian Data",
+      "useFor": "Find humanitarian datasets",
+      "exampleQuestion": "Find public datasets for a Haiti humanitarian brief.",
       "documentationUrl": "https://centre.humdata.org/ufaqs/about-the-humanitarian-data-exchange-api/",
-      "policyTopics": [
-        "Humanitarian"
-      ],
-      "exampleQuestion": "What kinds of humanitarian datasets can we find for Haiti?",
-      "limitation": "Inspect each resource's currency, quality, format and licence."
+      "access": "Free metadata search, no account",
+      "request": "https://data.humdata.org/api/3/action/package_search?q=Haiti&rows=2",
+      "discovery": "Search catalogue metadata; paginate with start and rows. Inspect the selected package and its resources. Choose a file whose geography, update date and methodology fit the question.",
+      "parse": "Require success=true, then read result.count and result.results. Catalogue results describe datasets; retrieve the chosen resource in its actual format to answer a numerical question.",
+      "limitation": "OCHA hosts data from multiple organisations. Check the publisher and licence of each resource; public catalogue access does not establish unrestricted access to every file.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
       "id": "eurostat",
-      "accessClass": "no-registration",
-      "access": "No registration",
       "name": "Eurostat",
+      "operator": "European Commission",
       "useFor": "European statistical tables",
+      "exampleQuestion": "Retrieve the EU population at the start of 2024.",
       "documentationUrl": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started",
-      "policyTopics": [
-        "Development"
-      ],
-      "exampleQuestion": "How many people lived in the EU on 1 January 2024?",
-      "limitation": "Decode multidimensional indexing and statistical flags before charting."
+      "access": "Free, no account",
+      "request": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?lang=en&geo=EU27_2020&time=2024&age=TOTAL&sex=T",
+      "discovery": "Choose the dataset in the Data Browser, confirm its dimensions and use their codes. Keep the query small before widening geography or time.",
+      "parse": "Decode JSON-stat using id, size and dimension; map indexed value and status entries back to their categories. Preserve updated and statistical flags. The sample returned one observation with ep flags.",
+      "limitation": "A value array can contain several dimensions. Do not treat it as a ready-made country/year table or omit provisional/estimated flags.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "oecd-data-explorer",
-      "accessClass": "no-registration",
-      "access": "No registration",
+      "id": "oecd",
       "name": "OECD Data Explorer",
+      "operator": "OECD",
       "useFor": "OECD statistical series",
-      "documentationUrl": "https://www.oecd.org/en/data/insights/data-explainers/2024/09/OECD-DE-FAQ.html",
-      "policyTopics": [
-        "Finance",
-        "Development"
-      ],
-      "exampleQuestion": "How did official development assistance to Kenya change from 2020 to 2024?",
-      "limitation": "Inspect SDMX structure and current download limits; narrow queries."
+      "exampleQuestion": "Retrieve a specified OECD table using its current published query.",
+      "documentationUrl": "https://www.oecd.org/en/data/insights/data-explainers/2024/09/api.html",
+      "access": "Free, no account",
+      "request": "",
+      "discovery": "Open the chosen table in OECD Data Explorer, select filters, and copy both Data and Structure requests from the Developer API panel. Inspect the returned structure and version. Do not reuse an old dimension key for a different table or version.",
+      "parse": "Request labelled CSV where the current service supports format=csvfilewithlabels. Preserve codes, labels, units, period, observation status and structure version. Follow the provider rate limits; narrow the query after size errors.",
+      "limitation": "On 10 October 2026, metadata loaded but tested numeric queries returned HTTP 500. Report an access failure if a fresh query fails. Do not supply cached numbers as a new retrieval or retry a failing endpoint without a bound.",
+      "verification": "Metadata retrieved; numeric requests failed on 10 October 2026"
     },
     {
-      "id": "ocha-fts-hpc-api",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "OCHA FTS/HPC API",
+      "id": "ocha-fts",
+      "name": "OCHA FTS/HPC",
+      "operator": "UN OCHA",
       "useFor": "Reported humanitarian funding",
+      "exampleQuestion": "Find reported humanitarian funding associated with Sudan in 2024.",
       "documentationUrl": "https://api.hpc.tools/docs/v1/",
-      "policyTopics": [
-        "Humanitarian",
-        "Finance"
-      ],
-      "exampleQuestion": "Which organizations received the most reported humanitarian funding for Sudan in the 2026 snapshot retrieved on 28 August 2026?",
-      "limitation": "In-year totals change; overlapping grouped flows can double-count."
-    },
-    {
-      "id": "openstreetmap-overpass",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "OpenStreetMap Overpass",
-      "useFor": "Mapped facilities and features",
-      "documentationUrl": "https://wiki.openstreetmap.org/wiki/Overpass_API",
-      "policyTopics": [
-        "Cities & maps"
-      ],
-      "exampleQuestion": "What hospitals are mapped within two kilometres of central Nairobi?",
-      "limitation": "Coverage is incomplete; bound queries and respect ODbL and shared capacity."
+      "access": "Free public route, no account",
+      "request": "https://api.hpc.tools/v1/public/fts/flow?countryISO3=SDN&year=2024&groupby=organization",
+      "discovery": "Choose country/year and read the documented funding-flow model. For recipient questions, inspect the destination-side report. Use the open route within its limits.",
+      "parse": "Read status, data and meta. Grouped output can contain report1 through report4, funding totals and linked objects. Establish incoming, internal and outgoing perspectives before calculating.",
+      "limitation": "Do not add reports together: they can describe overlapping flows. Reported funding, commitments and disbursements require separate treatment. Keep retrieval dates because totals revise.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
       "id": "gdacs",
-      "accessClass": "no-registration",
-      "access": "No registration",
       "name": "GDACS",
+      "operator": "UN and European Commission cooperation",
       "useFor": "Disaster event information",
+      "exampleQuestion": "Find red-alert earthquakes recorded for January 2025.",
       "documentationUrl": "https://www.gdacs.org/Documents/2025/GDACS_API_quickstart_v2.pdf",
-      "policyTopics": [
-        "Humanitarian",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "What red-alert disasters were reported worldwide from 1 to 28 August 2026?",
-      "limitation": "Distinguish filtered subsets from full response; verify official local warnings."
+      "access": "Free, no account",
+      "request": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ&fromdate=2025-01-01&todate=2025-01-31&alertlevel=red&pagesize=2",
+      "discovery": "Select the documented event type, dates and alert level. Use pagenumber and pagesize to complete the requested selection.",
+      "parse": "Read GeoJSON features and bbox. Keep event and episode IDs distinct; preserve event dates, modified date, alertlevel and episodealertlevel.",
+      "limitation": "A filtered alert subset does not describe all disasters. Attribute GDACS and direct requests for protective guidance to the competent local authority.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
       "id": "fao-wapor",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "FAO WaPOR",
-      "useFor": "Water-productivity layers and metadata",
+      "name": "FAO WaPOR 3",
+      "operator": "FAO",
+      "useFor": "Water-productivity and evapotranspiration layers",
+      "exampleQuestion": "Find the coverage and units of an annual evapotranspiration layer.",
       "documentationUrl": "https://data.apps.fao.org/gismgr/shared/docs/api-reference/index.html",
-      "policyTopics": [
-        "Climate & environment",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "What area and time period does this water-use dataset cover, and how detailed is it?",
-      "limitation": "Metadata retrieval and raster extraction are separate; check product terms."
+      "access": "Free version-3 route, no account",
+      "request": "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/WAPOR-3/mapsets?offset=0&limit=2",
+      "discovery": "Inspect /mapsets/L1-AETI-A for annual actual evapotranspiration/interception, then /mapsets/L1-AETI-A/rasters?offset=0&limit=1. Include both offset and limit. Version 3 public access does not need the tokens used in older version-2 instructions.",
+      "parse": "Read response.items for listings and response for a product. Retain measureUnit, scale, offset, dates, CRS, resolution, nodata and bounds. The checked product used mm/year and scale 0.1. Retrieve a suitable spatial subset only when the task needs raster values.",
+      "limitation": "Metadata retrieval does not calculate a water balance. Avoid downloading a global raster to answer a small-area question. Apply nodata and scale before calculation.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
-      "id": "who-public-xmart-odata",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "WHO public xMart OData",
-      "useFor": "Public health indicator queries",
+      "id": "who",
+      "name": "WHO public xMart",
+      "operator": "WHO",
+      "useFor": "Public health indicator tables",
+      "exampleQuestion": "Get the latest available life-expectancy estimates for Ghana.",
       "documentationUrl": "https://extranet.who.int/xmart4/docs/xmart_api/use_API.html",
-      "policyTopics": [
-        "Health",
-        "Development"
-      ],
-      "exampleQuestion": "What do the latest available data tell us about life expectancy in Ghana?",
-      "limitation": "Preserve estimate bounds and confirm units and schema for each table."
-    },
-    {
-      "id": "gdelt-doc-2-0",
-      "accessClass": "no-registration",
-      "access": "No registration",
-      "name": "GDELT DOC 2.0",
-      "useFor": "News coverage and automated tone",
-      "documentationUrl": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
-      "policyTopics": [
-        "Media & public debate"
-      ],
-      "exampleQuestion": "Was renewable-energy news coverage broadly positive or negative during the seven days ending 28 August 2026?",
-      "limitation": "Tone is not public opinion; coverage is uneven and endpoint availability varies."
-    },
-    {
-      "id": "tavily",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
-      "name": "Tavily",
-      "documentationUrl": "https://docs.tavily.com/documentation/quickstart",
-      "policyTopics": [
-        "Cities & maps",
-        "Climate & environment",
-        "Research"
-      ],
-      "exampleQuestion": "What recent official information can we find about urban heat policy, and which sources support each finding?",
-      "limitation": "Inspect underlying sources; retrieval is not evidence appraisal; check costs.",
-      "useFor": "Web discovery and research retrieval"
+      "access": "Free public tables, no account",
+      "request": "https://xmart-api-public.who.int/DATA_/RELAY_WHS?$filter=IND_ID%20eq%20%2790E2E48WHOSIS_000001%27%20and%20GEO_NAME_SHORT%20eq%20%27Ghana%27%20and%20DIM_TIME%20ge%20%272020%27%20and%20DIM_SEX%20eq%20%27TOTAL%27&$select=IND_ID,IND_CODE,DIM_TIME,DIM_GEO_CODE_M49,IND_NAME,GEO_NAME_SHORT,DIM_SEX,AMOUNT_N,AMOUNT_NL,AMOUNT_NU&$orderBy=DIM_TIME%20desc&$top=2",
+      "discovery": "Inspect https://xmart-api-public.who.int/DATA_/$metadata and indicator metadata before changing the table, fields or indicator. Build and URL-encode OData filters from validated values; use the public host rather than a documentation UAT host.",
+      "parse": "Read value and @odata.context. Preserve AMOUNT_N, AMOUNT_NL and AMOUNT_NU. Check units in metadata. Follow next links or documented paging; top=2 caps rows and may leave other observations out.",
+      "limitation": "The checked latest observations were 2021 and 2020. State the observation years, even when the user asks for latest data. Private xMart tables remain outside this skill.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
       "id": "un-comtrade",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
       "name": "UN Comtrade",
-      "documentationUrl": "https://comtradedeveloper.un.org/",
-      "policyTopics": [
-        "Development",
-        "Finance"
-      ],
-      "exampleQuestion": "How have Kenya's imports of photovoltaic modules changed from 2020 to 2024, and which countries supplied them?",
-      "limitation": "Align classification versions, reporter/partner, quantity/value and access tier.",
-      "useFor": "International trade flows"
-    },
-    {
-      "id": "openalex",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
-      "name": "OpenAlex",
-      "documentationUrl": "https://help.openalex.org/api/authentication/",
-      "policyTopics": [
-        "Research",
-        "Climate & environment",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "What recent open-access research can we find on urban heat, and which works are most cited?",
-      "limitation": "Check authentication and coverage; deduplicate and appraise underlying studies.",
-      "useFor": "Research works, authors and institutions"
-    },
-    {
-      "id": "openaq",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
-      "name": "OpenAQ",
-      "documentationUrl": "https://docs.openaq.org/using-the-api/api-key",
-      "policyTopics": [
-        "Health",
-        "Cities & maps",
-        "Climate & environment"
-      ],
-      "exampleQuestion": "What did the latest PM2.5 readings near central Delhi show, and which monitors reported them?",
-      "limitation": "Check instrument, pollutant, units and temporal/spatial coverage.",
-      "useFor": "Air-quality measurements"
+      "operator": "UN Statistics Division",
+      "useFor": "International trade records",
+      "exampleQuestion": "Retrieve Kenya’s reported imports from the world for 2023.",
+      "documentationUrl": "https://comtradeplus.un.org/ApiDocs",
+      "access": "Free anonymous preview; optional free account",
+      "request": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2023&reporterCode=404&cmdCode=TOTAL&flowCode=M&partnerCode=0&partner2Code=0&customsCode=C00&motCode=0&maxRecords=1",
+      "discovery": "Use the free public preview for a small question. Resolve reporter, partner, flow and commodity codes from current reference tables. Preview permits a limited period/product selection; use an existing free Basic account only if the user has it and the question exceeds preview limits.",
+      "parse": "Read count, data and error. Preserve classification version, reporter/partner roles, flow, currency, valuation and estimate/aggregation flags. Some descriptions can be null; retain codes and look up labels. Treat quantity zeros according to metadata.",
+      "limitation": "The provider sells other plans, but this skill uses only free routes. Preview has a 500-row ceiling. A cap is not proof of completeness; narrow or page only as permitted. Explain an unmet free-access limit instead of activating a paid plan.",
+      "verification": "Sample returned data on 10 October 2026"
     },
     {
       "id": "nasa-firms",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
       "name": "NASA FIRMS",
+      "operator": "NASA",
+      "useFor": "Satellite fire detections",
+      "exampleQuestion": "Find recent satellite fire detections within a chosen bounding box.",
       "documentationUrl": "https://firms.modaps.eosdis.nasa.gov/api/area/",
-      "policyTopics": [
-        "Climate & environment",
-        "Humanitarian",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "Where were active-fire detections in Greece during the seven days ending 28 August 2026?",
-      "limitation": "Detection points are not confirmed fire perimeters or damage estimates.",
-      "useFor": "Satellite fire detections"
+      "access": "Free MAP_KEY required",
+      "request": "https://firms.modaps.eosdis.nasa.gov/api/area/csv/{MAP_KEY}/VIIRS_NOAA20_NRT/19,34,30,42/1",
+      "discovery": "Ask the user to obtain a free key through https://firms.modaps.eosdis.nasa.gov/api/map_key if none is configured. Read it from an approved local secret, not chat. Check sensor availability and allowed dates. The area reference allows day ranges of 1–5; this example uses one day.",
+      "parse": "Parse CSV latitude, longitude, acq_date, acq_time, satellite, instrument, confidence and frp (fire radiative power). Keep acq_time as zero-padded UTC HHMM. The box is west,south,east,north. Preserve instrument/time context and query bounds.",
+      "limitation": "The key appears in the URL path: redact it in logs, citations and errors. Detection points do not establish fire perimeters or damage. The authenticated request was not tested for this release.",
+      "verification": "Documentation checked; requires user credentials"
     },
     {
-      "id": "copernicus-climate-data-store",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
+      "id": "copernicus-cds",
       "name": "Copernicus Climate Data Store",
+      "operator": "EU Copernicus / ECMWF",
+      "useFor": "Climate and reanalysis products",
+      "exampleQuestion": "Compare a chosen area’s recent temperature with a historical baseline.",
       "documentationUrl": "https://cds.climate.copernicus.eu/en/how-to-api",
-      "policyTopics": [
-        "Climate & environment",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "How unusual was July 2025 heat in Athens compared with the 1991–2020 July average?",
-      "limitation": "Accept applicable product terms; plan for queued requests and large files.",
-      "useFor": "Climate and reanalysis products"
-    },
-    {
-      "id": "google-earth-engine",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
-      "name": "Google Earth Engine",
-      "documentationUrl": "https://developers.google.com/earth-engine/guides/access",
-      "policyTopics": [
-        "Climate & environment",
-        "Cities & maps"
-      ],
-      "exampleQuestion": "How did vegetation greenness around Bishkek change between summer 2020 and summer 2025?",
-      "limitation": "Verify project eligibility, quotas, costs and each dataset's terms.",
-      "useFor": "Geospatial computation and imagery"
-    },
-    {
-      "id": "mapbox",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
-      "name": "Mapbox",
-      "documentationUrl": "https://docs.mapbox.com/api/search/geocoding/",
-      "policyTopics": [
-        "Cities & maps"
-      ],
-      "exampleQuestion": "Where are five project locations, and how can they be mapped consistently?",
-      "limitation": "Restrict tokens appropriately; check billing, attribution and storage rights.",
-      "useFor": "Geocoding and location interfaces"
-    },
-    {
-      "id": "azure-ai-language",
-      "accessClass": "account-or-project",
-      "access": "Account, key or approved project; check provider terms",
-      "name": "Azure AI Language",
-      "documentationUrl": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview",
-      "policyTopics": [
-        "Development",
-        "Media & public debate"
-      ],
-      "exampleQuestion": "What topics, named organizations and automated tone appear in these public consultation comments?",
-      "limitation": "Check regional/language support, costs and permission to send source text.",
-      "useFor": "Text classification and language analysis"
+      "access": "Free account, token and dataset terms required",
+      "request": "",
+      "discovery": "Use the dataset download form to choose a small area, time range and variable, then copy Show API request code. Use the official cdsapi client with base URL https://cds.climate.copernicus.eu/api and a locally stored token. The user must have accepted the applicable dataset terms. Do not invent a generic GET endpoint.",
+      "parse": "Run the generated client.retrieve(dataset, request, target) request after checking scope. The service queues jobs and returns files such as NetCDF or GRIB. Confirm the runtime can read the format before a large download. Preserve product version, units, grid, coordinates, calendar and time basis.",
+      "limitation": "Reanalysis is a modelled reconstruction. A baseline comparison needs consistent products and periods. Account setup, terms and authenticated retrieval were not tested in this release.",
+      "verification": "Documentation checked; requires user credentials"
     }
   ]
 }

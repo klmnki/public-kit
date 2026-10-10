@@ -1,33 +1,35 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {compareOptions,demoOptions} from '../lib/model.mjs';
-
-test('changing priorities reverses the preferred option',()=>{
-  assert.equal(compareOptions(demoOptions,{budget:60,weight:0})[0].id,'shade');
-  assert.equal(compareOptions(demoOptions,{budget:60,weight:1})[0].id,'cooling');
+import {readWorldBankPage,compareEndpoints} from '../lib/observations.mjs';
+const example=JSON.parse(await readFile(new URL('../data/verified-example.json',import.meta.url),'utf8'));
+test('real response retains observations, nulls and source footnotes',()=>{
+  const rows=readWorldBankPage(example.response);assert.equal(rows.length,15);
+  assert.equal(rows.find(r=>r.country==='GEO'&&r.year===2024).value,3812518);
+  assert.match(rows.find(r=>r.country==='GEO'&&r.year===2024).footnote,/2024 census/);
+  const missing=structuredClone(example.response);missing[1][0].value=null;assert.equal(readWorldBankPage(missing).find(r=>r.country===missing[1][0].countryiso3code&&r.year===Number(missing[1][0].date)).value,null);
 });
-test('budget keeps rejected options visible and handles no feasible option',()=>{
-  const rows=compareOptions(demoOptions,{budget:30,weight:0.5});
-  assert.equal(rows[0].id,'visits');assert.equal(rows.filter(r=>r.feasible).length,1);assert.equal(rows.length,3);
-  assert.equal(compareOptions(demoOptions,{budget:24,weight:0.5}).filter(r=>r.rank!==null).length,0);
+test('a truncated or invalid response cannot silently become a complete table',()=>{
+  const partial=structuredClone(example.response);partial[0].pages=2;assert.throws(()=>readWorldBankPage(partial),/Incomplete/);
+  const duplicate=structuredClone(example.response);duplicate[1][1]=duplicate[1][0];assert.throws(()=>readWorldBankPage(duplicate),/Duplicate/);
+  assert.throws(()=>readWorldBankPage([{message:[{value:'Invalid indicator'}]}]));
 });
-test('worked example agrees with hand calculation and preserves ties',()=>{
-  const rows=compareOptions(demoOptions,{budget:60,weight:0.5});
-  assert.equal(rows.find(r=>r.id==='shade').score,60);assert.equal(rows.find(r=>r.id==='cooling').score,72.5);assert.equal(rows.find(r=>r.id==='visits').score,55);
-  const tied=compareOptions(demoOptions,{budget:60,weight:30/85});assert.equal(tied[0].rank,1);assert.equal(tied[1].rank,1);
+test('endpoint change matches arithmetic without inferring a cause',()=>{
+  const summary=compareEndpoints(readWorldBankPage(example.response),2020,2024);
+  assert.equal(summary.find(r=>r.country==='MDA').changePercent,(2402306-2635130)/2635130*100);
+  assert.equal(summary.find(r=>r.country==='SRB').start,6899126);
 });
-test('invalid assumptions fail explicitly',()=>{
-  for(const weight of [-1,2,NaN,Infinity])assert.throws(()=>compareOptions(demoOptions,{budget:60,weight}));
-  assert.throws(()=>compareOptions(demoOptions,{budget:-1,weight:0.5}));
-  assert.throws(()=>compareOptions([{id:'x',name:'X',cost:1,reach:null,targeting:30}],{budget:60,weight:0.5}));
+test('missing endpoints and zero baselines have no fabricated percentage',()=>{
+  assert.equal(compareEndpoints([{country:'ABC',name:'Example',year:2020,value:null},{country:'ABC',name:'Example',year:2024,value:5}],2020,2024)[0].changePercent,null);
+  assert.equal(compareEndpoints([{country:'ABC',name:'Example',year:2020,value:0},{country:'ABC',name:'Example',year:2024,value:5}],2020,2024)[0].changePercent,null);
 });
-test('the standalone skill contains every source and no required local dependency',async()=>{
+test('portable skill includes retained institutional sources and excludes removed providers',async()=>{
   const skill=await readFile(new URL('../SKILL.md',import.meta.url),'utf8');
   const {sources}=JSON.parse(await readFile(new URL('../data/catalogue.json',import.meta.url),'utf8'));
-  assert.equal(sources.length,27);assert.equal(new Set(sources.map(s=>s.id)).size,27);
-  assert.equal(sources.filter(s=>s.accessClass==='account-or-project').length,9);
-  for(const s of sources){assert.ok(skill.includes(s.documentationUrl),s.name);assert.ok(s.limitation||s.watchFor);assert.equal(new URL(s.documentationUrl).protocol,'https:');}
-  assert.equal([...skill.matchAll(/\]\((?!https:\/\/|#)([^)]+)\)/g)].length,0,'No links to missing local reference files');
-  assert.ok(skill.startsWith('---\nname: public-kit\n'));assert.ok(skill.includes('Copyright (c) 2026 Ievgen Kylymnyk'));
+  assert.equal(sources.length,16);assert.equal(new Set(sources.map(s=>s.id)).size,16);
+  for(const source of sources){assert.ok(skill.includes(source.documentationUrl),source.name);assert.ok(source.operator);assert.ok(source.request||source.discovery);}
+  for(const name of ['Tavily','Mapbox','Open-Meteo','OpenAlex','OpenAQ','Frankfurter','Crossref','Google Earth Engine','Azure AI','GDELT','OpenStreetMap'])assert.ok(!skill.includes(name),name);
+  assert.equal([...skill.matchAll(/\]\((?!https:\/\/|#)([^)]+)\)/g)].length,0);
+  assert.ok(skill.startsWith('---\nname: public-kit\n'));
+  assert.ok(!skill.includes('Public API Marketplace'));
 });

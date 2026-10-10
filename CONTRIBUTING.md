@@ -1,11 +1,21 @@
 # Contributing
 
-Useful contributions include an outdated source correction, a real analytical use case, a clearer instruction or a reproducible failure.
+Report an outdated request, improve an instruction or share a question you answered with real data. A small, reproducible example helps us understand the change.
 
-For source updates, include the provider documentation URL, date checked, applicable access conditions and the precise change. Keep the directory in SKILL.md and data/catalogue.json consistent. Do not include credentials, private data or third-party payloads whose redistribution is not permitted.
+## Source corrections
 
-For method changes, show a concrete question, how the current instruction fails and what the proposed instruction improves. Distinguish structural validation from model behaviour. Keep SKILL.md self-contained and usable without scripts or adjacent files.
+Include the official documentation URL, date checked, request parameters and observed response. Explain the access conditions and any limitation that affects interpretation. Keep the source route in `SKILL.md` and its entry in `data/catalogue.json` consistent.
 
-For code changes, run npm test and npm run build. Check affected interaction and mobile layout. Keep the synthetic example explicitly labelled and ensure its numbers and equations agree with SKILL.md.
+The directory covers institution-operated services with free routes. Check the operator, terms and limits before proposing a source. Keep credentials and private records out of issues, examples and commits. Include third-party responses only when their terms permit redistribution, with attribution and a retrieval date.
 
-Small, focused pull requests are welcome. Contributions are made under the project's MIT licence. Provider data and referenced materials retain their own terms.
+## Skill improvements
+
+Start with a user's question. Show what the current instructions missed and how the change improves retrieval or the answer. Keep `SKILL.md` usable on its own. Distinguish a successful API request from evidence that an assistant followed the workflow well.
+
+Useful checks include correct geography and units, complete pagination, preserved missing values and source notes, or an honest explanation of a failed request. Avoid adding a mandatory analytical framework to a question that needs a simple lookup.
+
+## Website changes
+
+Run `npm test` and `npm run build`. Check affected interactions and the mobile layout. Keep the population example consistent with `data/verified-example.json`, retain its footnotes, and label the saved response with its retrieval date. Verify the website's download matches the root `SKILL.md`.
+
+Contribute original code and instructions under the project's MIT licence. Provider data and referenced materials retain their own terms; see [NOTICE](NOTICE.md).

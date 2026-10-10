@@ -1,0 +1,280 @@
+{
+  "id": "population-comparison",
+  "question": "Compare population in Moldova, Georgia and Serbia from 2020 to 2024. Give me the numbers, the change over the period and the source.",
+  "provider": "World Bank",
+  "indicator": "SP.POP.TOTL",
+  "indicatorName": "Population, total",
+  "unit": "people, midyear estimates",
+  "sourceUrl": "https://api.worldbank.org/v2/country/MDA;GEO;SRB/indicator/SP.POP.TOTL?format=json&source=2&date=2020:2024&per_page=100&footnote=y",
+  "documentationUrl": "https://data.worldbank.org/indicator/SP.POP.TOTL",
+  "retrievedAt": "2026-10-10T18:41:11.522601+00:00",
+  "kind": "saved live response",
+  "response": [
+    {
+      "page": 1,
+      "pages": 1,
+      "per_page": 100,
+      "total": 15,
+      "sourceid": "2",
+      "lastupdated": "2026-10-08"
+    },
+    [
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "GE",
+          "value": "Georgia"
+        },
+        "countryiso3code": "GEO",
+        "date": "2024",
+        "value": 3812518,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": "Average of January 1st populations that are based on the results of the 2024 census."
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "GE",
+          "value": "Georgia"
+        },
+        "countryiso3code": "GEO",
+        "date": "2023",
+        "value": 3715483,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "GE",
+          "value": "Georgia"
+        },
+        "countryiso3code": "GEO",
+        "date": "2022",
+        "value": 3712502,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "GE",
+          "value": "Georgia"
+        },
+        "countryiso3code": "GEO",
+        "date": "2021",
+        "value": 3708610,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "GE",
+          "value": "Georgia"
+        },
+        "countryiso3code": "GEO",
+        "date": "2020",
+        "value": 3722716,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "MD",
+          "value": "Moldova"
+        },
+        "countryiso3code": "MDA",
+        "date": "2024",
+        "value": 2402306,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": "Preliminary."
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "MD",
+          "value": "Moldova"
+        },
+        "countryiso3code": "MDA",
+        "date": "2023",
+        "value": 2457783,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": "Preliminary."
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "MD",
+          "value": "Moldova"
+        },
+        "countryiso3code": "MDA",
+        "date": "2022",
+        "value": 2528654,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "MD",
+          "value": "Moldova"
+        },
+        "countryiso3code": "MDA",
+        "date": "2021",
+        "value": 2595809,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "MD",
+          "value": "Moldova"
+        },
+        "countryiso3code": "MDA",
+        "date": "2020",
+        "value": 2635130,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "RS",
+          "value": "Serbia"
+        },
+        "countryiso3code": "SRB",
+        "date": "2024",
+        "value": 6586476,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "RS",
+          "value": "Serbia"
+        },
+        "countryiso3code": "SRB",
+        "date": "2023",
+        "value": 6623183,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "RS",
+          "value": "Serbia"
+        },
+        "countryiso3code": "SRB",
+        "date": "2022",
+        "value": 6664449,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "RS",
+          "value": "Serbia"
+        },
+        "countryiso3code": "SRB",
+        "date": "2021",
+        "value": 6834326,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      },
+      {
+        "indicator": {
+          "id": "SP.POP.TOTL",
+          "value": "Population, total"
+        },
+        "country": {
+          "id": "RS",
+          "value": "Serbia"
+        },
+        "countryiso3code": "SRB",
+        "date": "2020",
+        "value": 6899126,
+        "unit": "",
+        "obs_status": "",
+        "decimal": 0,
+        "footnote": ""
+      }
+    ]
+  ],
+  "limitations": "These national estimates can reflect revisions, census changes and geographic coverage. The endpoint comparison describes the series; it does not establish why the population changed. Values for a particular city require another source."
+}
