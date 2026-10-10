@@ -1,0 +1,11 @@
+import {mkdir,cp,copyFile,readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+await mkdir('dist',{recursive:true});
+await cp('site','dist',{recursive:true});
+await copyFile('data/catalogue.json','dist/catalogue.json');
+await copyFile('lib/model.mjs','dist/model.mjs');
+await copyFile('SKILL.md','dist/SKILL.md');
+await copyFile('LICENSE','dist/LICENSE');
+const sum=createHash('sha256').update(await readFile('SKILL.md')).digest('hex');
+await writeFile('dist/SHA256SUMS.txt',sum+'  SKILL.md\n');
+console.log('Built Public Kit site and identical standalone SKILL.md.');
