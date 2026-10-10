@@ -1,6 +1,7 @@
 ![Public Kit — Public data, analysis and decision tools](assets/banner.svg)
 
-**One SKILL.md for working with public data, evidence and choices.**  
+**One SKILL.md for working with public data, evidence and choices.**
+
 By [Ievgen Kylymnyk](https://github.com/klmnki) · Codex + Claude Code · MIT · Preview release
 
 [**Get SKILL.md ↓**](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) · [Read the skill](SKILL.md) · [Try the example](https://klmnki.github.io/public-kit/#example) · [Browse sources](https://klmnki.github.io/public-kit/#sources)
