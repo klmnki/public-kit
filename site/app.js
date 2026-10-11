@@ -1,79 +1,39 @@
 import {readWorldBankPage,compareEndpoints} from './observations.mjs';
 const $=s=>document.querySelector(s);
-const text=(tag,value,cls)=>{const e=document.createElement(tag);e.textContent=value;if(cls)e.className=cls;return e};
-const number=n=>n===null?'Not available':new Intl.NumberFormat('en').format(n);
-try{
-  const response=await fetch('verified-example.json');if(!response.ok)throw new Error('Saved response unavailable');
-  const example=await response.json(),rows=readWorldBankPage(example.response),summary=compareEndpoints(rows,2020,2024);
-  $('#results').replaceChildren(...summary.map(r=>{const tr=text('tr',''),name=text('th',r.name);name.scope='row';const change=text('td',r.changePercent===null?'Not available':(r.changePercent>0?'+':'')+r.changePercent.toFixed(1)+'%','change');tr.append(name,text('td',number(r.start)),text('td',number(r.end)),change);return tr}));
-  $('#observations').replaceChildren(...rows.map(r=>{const tr=text('tr','');tr.append(text('td',r.name),text('td',r.year),text('td',number(r.value)),text('td',r.footnote||'—'));return tr}));
-  $('#query').textContent=example.sourceUrl;$('#queryLink').href=example.sourceUrl;
-  $('#exampleStatus').textContent='15 observations · 3 countries · 2020–2024 · Complete response';
-  $('#export').href='public-kit-population-2020-2024.csv';$('#export').download='public-kit-population-2020-2024.csv';$('#export').removeAttribute('aria-disabled');
-}catch{$('#exampleStatus').textContent='The saved response could not be loaded or validated. Download the JSON below to inspect it.';$('#export').textContent='CSV unavailable';}
-try{
-  const response=await fetch('catalogue.json');if(!response.ok)throw new Error('Catalogue unavailable');const {sources}=await response.json();
-  function renderSources(){
-    const q=$('#search').value.trim().toLowerCase(),access=$('#access').value;
-    const needsCredentials=s=>['nasa-firms','copernicus-cds'].includes(s.id);
-    const selected=sources.filter(s=>(access==='all'||(access==='credentials')===needsCredentials(s))&&JSON.stringify(s).toLowerCase().includes(q));
-    $('#count').textContent=selected.length+' / '+sources.length+' sources';
-    $('#sourceGrid').replaceChildren(...selected.map(s=>{
-      const el=text('details','','source-row'),summary=text('summary','');
-      const plus=text('span','+','expand');plus.setAttribute('aria-hidden','true');
-      summary.append(text('span',String(sources.indexOf(s)+1).padStart(2,'0'),'source-num'),text('span',s.name,'source-name'),text('span',s.useFor,'source-use'),plus);
-      const body=text('div','','source-detail');body.append(text('span',s.access,'tag'),text('p','“'+s.exampleQuestion+'”','source-question'),text('p',s.discovery));
-      if(s.request){const pre=text('pre',s.request);body.append(pre);}
-      body.append(text('p',s.parse),text('p',s.limitation),text('p',s.verification,'verification'));
-      const a=text('a','Provider documentation ↗');a.href=s.documentationUrl;a.target='_blank';a.rel='noopener noreferrer';body.append(a);el.append(summary,body);return el;
-    }));
-    if(!selected.length)$('#sourceGrid').append(text('p','No matching sources. Try another topic or access requirement.','empty'));
-  }
-  $('#search').addEventListener('input',renderSources);$('#access').addEventListener('change',renderSources);renderSources();
-}catch{$('#count').textContent='Unavailable';$('#sourceGrid').append(text('p','The directory could not load. All source guides are included in SKILL.md.','empty'))}
-
-try {
-  const response=await fetch('repeatable-examples.json');
-  if(!response.ok) throw new Error('Examples unavailable');
-  const {examples}=await response.json();
-  const tabs=[...document.querySelectorAll('[data-case]')];
-  const panel=$('#case-panel');
-  function renderCase(id){
-    const example=examples.find(e=>e.id===id);
-    if(!example)throw new Error('Example missing');
-    tabs.forEach(tab=>{const chosen=tab.dataset.case===id;tab.setAttribute('aria-selected',String(chosen));tab.tabIndex=chosen?0:-1});
-    panel.setAttribute('aria-labelledby','tab-'+id);
-    const heading=text('div','','case-heading');
-    heading.append(text('p',example.question,'case-question'),text('h3',example.headline),text('p',example.summary));
-    panel.replaceChildren(heading);
-    for(const result of example.tables){
-      const wrap=text('div','','table-wrap'),table=text('table','','case-table');
-      table.append(text('caption',result.caption));
-      const head=text('thead',''),tr=text('tr','');
-      result.columns.forEach(c=>{const th=text('th',c);th.scope='col';tr.append(th)});head.append(tr);
-      const body=text('tbody','');
-      result.rows.forEach(row=>{const r=text('tr','');row.forEach((v,i)=>{const cell=text(i===0?'th':'td',v??'Not available');if(i===0)cell.scope='row';r.append(cell)});body.append(r)});
-      table.append(head,body);wrap.append(table);panel.append(wrap);
-    }
-    panel.append(text('p',example.provenance,'case-provenance'));
-    const notes=text('div','','case-notes');
-    for(const [title,body] of [['Method',example.method],['What this cannot tell you',example.limitation]]){const box=text('div','');box.append(text('h4',title),text('p',body));notes.append(box)}
-    panel.append(notes);
-    const prompt=text('details','','data-details'),summary=text('summary','Use this question and repeat the request');
-    const pre=text('pre',example.prompt),copy=text('button','Copy question','copy-button');copy.type='button';
-    const copyStatus=text('span','','copy-status');copyStatus.setAttribute('role','status');
-    copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(example.prompt);copyStatus.textContent='Question copied.'}catch{copyStatus.textContent='Select and copy the question above.'}});
-    prompt.append(summary,pre,copy,copyStatus,text('p',example.repeat));panel.append(prompt);
-    const links=text('div','','case-links');
-    for(const [label,url,download] of [['Saved data ↓ JSON',example.dataUrl,true],['Reproduce on GitHub ↗',example.codeUrl,false],['Provider documentation ↗',example.sourceUrl,false]]){const a=text('a',label);a.href=url;if(download)a.download='';links.append(a)}
-    panel.append(links);
-  }
-  tabs.forEach((tab,index)=>{
-    tab.addEventListener('click',()=>renderCase(tab.dataset.case));
-    tab.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();tabs[next].focus();renderCase(tabs[next].dataset.case)});
-  });
-  renderCase('ilostat');
-} catch {
-  $('#case-panel').replaceChildren(text('p','The saved examples could not load. Open the examples folder on GitHub to inspect the data.'));
-  const a=text('a','Examples on GitHub ↗');a.href='https://github.com/klmnki/public-kit/tree/main/examples';$('#case-panel').append(a);
+const el=(tag,value='',cls='')=>{const n=document.createElement(tag);n.textContent=value;if(cls)n.className=cls;return n};
+const link=(label,url,download=false)=>{const a=el('a',label);a.href=url;if(download)a.download='';return a};
+const detail=$('#detail'),body=$('#detail-body');
+let sources=[],examples=[],population=null;
+const shortNames={'world-bank':'World Bank','undp-geohub':'UNDP GeoHub','unsd-sdg':'UN SDG','unhcr':'UNHCR','nasa-power':'NASA POWER','usgs':'USGS','hdx':'HDX','eurostat':'Eurostat','oecd':'OECD','ocha-fts':'OCHA FTS','gdacs':'GDACS','fao-wapor':'FAO WaPOR','who':'WHO','un-comtrade':'UN Comtrade','nasa-firms':'NASA FIRMS','copernicus-cds':'Copernicus','ilostat':'ILOSTAT','world-bank-pip':'World Bank PIP'};
+const topics={'world-bank':'Development','undp-geohub':'Maps & spatial data','unsd-sdg':'SDG indicators','unhcr':'Displacement','nasa-power':'Weather & energy','usgs':'Earthquakes','hdx':'Humanitarian data','eurostat':'European statistics','oecd':'Economic statistics','ocha-fts':'Humanitarian funding','gdacs':'Disaster alerts','fao-wapor':'Water & agriculture','who':'Health','un-comtrade':'Trade · limited preview','nasa-firms':'Active fires','copernicus-cds':'Climate','ilostat':'Labour & employment','world-bank-pip':'Poverty & inequality'};
+const credentials=id=>['nasa-firms','copernicus-cds'].includes(id);
+function open(title){$('#detail-title').textContent=title;body.replaceChildren();if(!detail.open)detail.showModal();detail.scrollTop=0;$('#detail-title').focus({preventScroll:true})}
+$('#close-dialog').addEventListener('click',()=>detail.close());
+detail.addEventListener('click',event=>{if(event.target!==detail)return;const r=detail.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)detail.close()});
+function table({caption,columns,rows}){const wrap=el('div','','dialog-table'),t=el('table'),head=el('thead'),tr=el('tr'),tb=el('tbody');t.append(el('caption',caption));columns.forEach(c=>{const th=el('th',c);th.scope='col';tr.append(th)});head.append(tr);rows.forEach(row=>{const r=el('tr');row.forEach((v,i)=>{const c=el(i===0?'th':'td',v??'Not available');if(i===0)c.scope='row';r.append(c)});tb.append(r)});t.append(head,tb);wrap.append(t);return wrap}
+function section(title,value){body.append(el('h3',title),el('p',value))}
+function question(prompt,repeat){const d=el('details'),summary=el('summary','Question to reuse'),copy=el('button','Copy question','copy-button'),status=el('span','','copy-status');copy.type='button';status.setAttribute('role','status');copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(prompt);status.textContent='Copied.'}catch{status.textContent='Select and copy the text above.'}});d.append(summary,el('pre',prompt),copy,status,el('p',repeat));body.append(d)}
+function showSource(id){const s=sources.find(s=>s.id===id);if(!s)return;open(s.name);body.append(el('span',s.access,'badge'),el('p',s.useFor),el('p',s.exampleQuestion));section('Find the data',s.discovery);if(s.request)body.append(el('pre',s.request));section('Read the response',s.parse);section('Limits',s.limitation);body.append(el('p',s.verification,'source-check'));const links=el('div','','dialog-links');links.append(link('Provider documentation ↗',s.documentationUrl),link('Read the skill ↗','https://github.com/klmnki/public-kit/blob/main/SKILL.md'));if(id==='world-bank'){const button=el('button','Population example ↗','text-button');button.type='button';button.addEventListener('click',showPopulation);links.append(button)}body.append(links)}
+function showExample(id){const e=examples.find(e=>e.id===id);if(!e){open('Example unavailable');body.append(el('p','The saved example could not load.'),link('Open the examples on GitHub ↗','https://github.com/klmnki/public-kit/tree/main/examples'));return}open(e.question);body.append(el('p',e.summary));e.tables.forEach(t=>body.append(table(t)));body.append(el('p',e.provenance,'meta'));section('Method',e.method);section('Limits',e.limitation);question(e.prompt,e.repeat);const links=el('div','','dialog-links');links.append(link('Download data ↓ JSON',e.dataUrl,true),link('Repeat on GitHub ↗',e.codeUrl),link('Provider documentation ↗',e.sourceUrl));body.append(links)}
+function showPopulation(){open('Population, 2020–2024');if(!population){body.append(el('p','The saved response could not load.'),link('Saved response ↓ JSON','verified-example.json',true));return}const rows=readWorldBankPage(population.response),comparison=compareEndpoints(rows,2020,2024),n=v=>v===null?'Not available':new Intl.NumberFormat('en').format(v);body.append(table({caption:'National population estimates · people',columns:['Country','2020','2024','Change'],rows:comparison.map(r=>[r.name,n(r.start),n(r.end),r.changePercent===null?'Not available':(r.changePercent>0?'+':'')+r.changePercent.toFixed(1)+'%'])}));body.append(el('p','Georgia’s 2024 figure incorporates its 2024 census. Moldova’s 2023 and 2024 figures are preliminary. These totals do not explain the causes of change.'),el('p','Change = (2024 − 2020) ÷ 2020 × 100. Retrieved 10 October 2026. World Bank data: CC BY 4.0.','meta'));body.append(table({caption:'All 15 observations and source footnotes',columns:['Country','Year','People','Source note'],rows:rows.map(r=>[r.name,r.year,n(r.value),r.footnote||'—'])}));const links=el('div','','dialog-links');links.append(link('Download data ↓ CSV','public-kit-population-2020-2024.csv',true),link('Saved response ↓ JSON','verified-example.json',true),link('Original request ↗',population.sourceUrl),link('Attribution','NOTICE.md'));body.append(links)}
+function showSetup(){open('Use the skill');body.append(el('p','Download SKILL.md and save it inside the project where you work. No companion files are needed.'));section('Codex','Save the file at .agents/skills/public-kit/SKILL.md. Invoke $public-kit, followed by your question.');section('Claude Code','Save the file at .claude/skills/public-kit/SKILL.md. Invoke /public-kit, followed by your question.');section('Then ask','For example: “Compare population in Moldova, Georgia and Serbia from 2020 to 2024. Show the numbers, changes and source notes.”');section('What the file does','It gives the agent source-specific instructions: where to look, how to request data, which fields to retain and what to check. Your session still needs network access and a tool that can make HTTP requests. The file does not create accounts or install connectors.');body.append(link('Installation details and personal skill folders ↗','https://github.com/klmnki/public-kit/blob/main/docs/INSTALL.md'))}
+function showAbout(){open('About Public Kit');body.append(el('p','I made Public Kit through my GenAI Builders work. It collects instructions for using institutional data in Codex and Claude, starting from a question in ordinary language.'),el('p','By Ievgen Kylymnyk. This is an independent personal project, without institutional endorsement.'));section('Access checks','The original routes were checked on 10 October 2026. Thirteen returned data or metadata. On 11 October, ILOSTAT, PIP and the monthly Eurostat example returned observations. OECD metadata loaded, but its tested data request failed. NASA FIRMS and Copernicus require free credentials and were not tested with them.');section('Saved examples','The three analyses use dated snapshots retrieved on 11 October 2026. They do not update automatically. Each includes the data, method and a script for repeating the request.');section('Current limits','This is a preview. A controlled comparison of the skill across Codex and Claude has not been completed. A successful sample request does not guarantee future availability.');const p=el('p','The idea of sharing the workflow as a skill was inspired by ');p.append(link('Civic Analytics Agent Workflow','https://github.com/sgarcese/Civic-Analytics-Agent-Workflow-Claude-Skill'),document.createTextNode('.'));body.append(p);const links=el('div','','dialog-links');links.append(link('MIT licence','LICENSE'),link('Data attribution','NOTICE.md'),link('Report a problem ↗','https://github.com/klmnki/public-kit/issues'));body.append(links)}
+document.querySelectorAll('[data-open]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.open;if(id==='setup')showSetup();else if(id==='about')showAbout();else showExample(id)}));
+const tabs=[...document.querySelectorAll('[data-client]')];
+function selectClient(id){tabs.forEach(t=>{const selected=t.dataset.client===id;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1});$('#install-panel').setAttribute('aria-labelledby',id+'-tab');$('#install-path').textContent=(id==='codex'?'.agents':'.claude')+'/skills/public-kit/SKILL.md';$('#invoke').textContent=id==='codex'?'$public-kit':'/public-kit'}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectClient(tab.dataset.client));tab.addEventListener('keydown',event=>{let next;if(['ArrowLeft','ArrowRight'].includes(event.key))next=1-i;else if(event.key==='Home')next=0;else if(event.key==='End')next=1;else return;event.preventDefault();selectClient(tabs[next].dataset.client);tabs[next].focus()})});
+function previews(){
+  const ilo=examples.find(e=>e.id==='ilostat'),pip=examples.find(e=>e.id==='pip'),euro=examples.find(e=>e.id==='eurostat');
+  if(ilo){const bars=el('div','','mini-bars');ilo.tables[0].rows.forEach(row=>{const r=el('div','','bar-row'),track=el('span','','bar-track'),start=el('span','','bar-start'),end=el('span','','bar-end');const a=parseFloat(row[1]),b=parseFloat(row[2]);start.style.width=a/25*100+'%';end.style.width=b/25*100+'%';track.append(start,end);track.setAttribute('aria-hidden','true');r.append(el('span',row[0].replace('Republic of ','')),track,el('strong',row[2]));bars.append(r)});$('#preview-ilostat').replaceChildren(bars,el('p','Ages 15–24 · 2024 share; pale bars show 2021','mini-note'))}
+  if(pip){const row=pip.tables[1].rows,revision=el('div','','revision');row.forEach((r,i)=>{if(i)revision.append(el('span','→','arrow'));const v=el('div');v.append(el('strong',r[1]),el('span',r[0]+' release'));revision.append(v)});$('#preview-pip').replaceChildren(revision,el('p','World · $3/day, 2021 PPP · same reference year','mini-note'))}
+  if(euro){const months=el('div','','months'),monthNames={'07':'Jul','08':'Aug','09':'Sep'};euro.tables[0].rows.forEach(r=>{const missing=r[1]==='Not available',m=el('div','','month'+(missing?' missing':''));m.append(el('strong',missing?'—':r[1]),el('span',(monthNames[r[0].slice(-2)]||r[0])+(missing?' · no value':'')));months.append(m)});$('#preview-eurostat').replaceChildren(months,el('p','% of labour force · seasonally adjusted','mini-note'))}
 }
+async function load(url){const r=await fetch(url);if(!r.ok)throw new Error('Could not load '+url);return r.json()}
+await Promise.allSettled([
+load('catalogue.json').then(data=>{sources=data.sources;$('#sourceGrid').replaceChildren(...sources.map(s=>{const button=el('button','','source');button.type='button';const name=el('span',shortNames[s.id]||s.name,'source-name');name.append(el('span',topics[s.id]||s.useFor,'source-topic'));button.append(name);const badge=credentials(s.id)?'Key':s.id==='oecd'?'!':null;if(badge){button.append(el('span',badge,'source-marker'));button.setAttribute('aria-label',s.name+(badge==='Key'?': free credentials required':': tested data request failed'))}else{const arrow=el('span','↗','source-chevron');arrow.setAttribute('aria-hidden','true');button.append(arrow)}button.addEventListener('click',()=>showSource(s.id));return button}))}).catch(()=>{$('#sourceGrid').replaceChildren(el('p','The source list could not load. All guides are in the skill file.'))}),
+load('repeatable-examples.json').then(data=>{examples=data.examples;previews()}).catch(()=>{document.querySelectorAll('.case-preview').forEach(n=>n.replaceChildren(el('p','Saved data unavailable. Open the analysis for the repository link.')))}),
+load('verified-example.json').then(data=>{population=data}).catch(()=>{})
+]);
+// Retain population links shared before the compact layout.
+if(location.hash==='#example')showPopulation();
+window.addEventListener('hashchange',()=>{if(location.hash==='#example')showPopulation()});
