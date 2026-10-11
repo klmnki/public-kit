@@ -1,3 +1,4 @@
+import './build-examples.mjs';
 import {mkdir,cp,copyFile,readFile,writeFile,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {readWorldBankPage} from '../lib/observations.mjs';
@@ -5,6 +6,8 @@ await mkdir('dist',{recursive:true});
 await rm('dist/model.mjs',{force:true});
 await cp('site','dist',{recursive:true});
 await copyFile('data/catalogue.json','dist/catalogue.json');
+await copyFile('data/repeatable-examples.json','dist/repeatable-examples.json');
+await cp('examples','dist/examples',{recursive:true,filter:path=>!path.replaceAll('\\','/').split('/').includes('.cache')});
 await copyFile('lib/observations.mjs','dist/observations.mjs');
 await copyFile('data/verified-example.json','dist/verified-example.json');
 await copyFile('SKILL.md','dist/SKILL.md');

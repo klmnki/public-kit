@@ -1,12 +1,26 @@
 ![Public Kit: use public data through a conversation](assets/banner.svg)
 
-**Ask a question. Use data from 16 institutional APIs in Codex or Claude Code.**
+**18 free institutional data guides for Codex and Claude Code.**
 
-By [Ievgen Kylymnyk](https://github.com/klmnki) · One SKILL.md · MIT · Preview 0.2.0-rc.1
+By [Ievgen Kylymnyk](https://github.com/klmnki) · One SKILL.md · MIT · Preview 0.3.0-rc.1
 
-[**Download SKILL.md**](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) · [Read the file](SKILL.md) · [See the example](https://klmnki.github.io/public-kit/#example) · [Browse sources](https://klmnki.github.io/public-kit/#sources)
+[**Download SKILL.md**](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) · [Read the file](SKILL.md) · [See the examples](https://public-kit.klmnki.chatgpt.site/#examples) · [Browse sources](https://public-kit.klmnki.chatgpt.site/#sources)
 
 Describe what you need in ordinary language. Public Kit guides your assistant to select an institutional source, request real data, check what came back and explain the result. You can ask for a comparison, a chart, a CSV or a data connection for an app. You do not need to choose an API or know its parameter names first.
+
+## Repeat an analysis
+
+Three examples include actual responses, calculations and scripts you can run without an account or API key:
+
+| Question | Example |
+| --- | --- |
+| How did the share of young people outside employment, education or training change? | [ILOSTAT: Moldova, Georgia and Serbia, 2021–2024](examples/ilostat/README.md) |
+| How did poverty change, and how did a later release revise the same year's estimate? | [PIP: Georgia's trend and a global estimate revision](examples/pip/README.md) |
+| What is the latest monthly unemployment figure, and which earlier values changed? | [Eurostat: dated snapshots and revision checks](examples/eurostat/README.md) |
+
+[Explore the examples on the public ChatGPT site](https://public-kit.klmnki.chatgpt.site/#examples). The [GitHub Pages mirror](https://klmnki.github.io/public-kit/#examples) uses the same source. Both show saved, dated data. The scripts retrieve data when you run them; no background refresh is configured.
+
+The skill includes the source instructions and how to repeat a comparison. Installing it does not require these scripts or any companion files.
 
 ## Start with a question
 
@@ -37,13 +51,15 @@ Claude Code  .claude/skills/public-kit/SKILL.md
 
 Invoke `$public-kit` in Codex or `/public-kit` in Claude Code, followed by your question. [Installation details](docs/INSTALL.md) include personal installation paths.
 
-The file contains the instructions, 16 source routes, example requests and licence. No companion files are required. Your session needs a tool that can fetch URLs or execute HTTP requests, with network access allowed.
+The file contains the instructions, 18 source guides, example requests and licence. No companion files are required. Your session needs a tool that can fetch URLs or execute HTTP requests, with network access allowed.
 
 ## Sources and current checks
 
-The directory covers services from the UN, World Bank, NASA, USGS, European Commission, OECD and Copernicus. The included routes are free, subject to provider terms and quotas. NASA FIRMS and Copernicus require free credentials.
+The directory covers services from the UN, ILO, World Bank, NASA, USGS, European Commission, OECD and Copernicus. ILOSTAT uses public CSV downloads; PIP adds a second World Bank route. The included routes are free, subject to provider terms and quotas. NASA FIRMS and Copernicus require free credentials.
 
 On **10 October 2026**, bounded anonymous requests to 13 services returned usable responses. OECD metadata loaded, but the tested data queries returned HTTP 500. Authenticated NASA FIRMS and Copernicus retrievals remain untested. Some successful requests retrieve dataset metadata; the assistant must then inspect the selected resource to obtain observations.
+
+On **11 October 2026**, the new ILOSTAT and PIP examples and the expanded Eurostat example returned observations. Their saved responses, source notes and tests are in the examples folders.
 
 These checks establish access for specific requests. We have not completed a controlled evaluation of the skill across Codex and Claude. Check the returned dates, coverage and source notes before using a result.
 

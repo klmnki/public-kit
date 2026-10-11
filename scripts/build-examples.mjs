@@ -1,0 +1,51 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const json=async path=>JSON.parse(await readFile(path,'utf8'));
+const iloPath='examples/ilostat/snapshot.json';
+const euroPath='examples/eurostat/snapshots/eu-unemployment-2026-10-11T14-41-27-831Z.json';
+const [ilo,pip,euro]=await Promise.all([json(iloPath),json('examples/pip/snapshot.json'),json(euroPath)]);
+const pct=v=>v===null?'Not available':v.toFixed(2)+'%';
+const pp=v=>v===null?'Not comparable':(v>0?'+':'')+v.toFixed(2)+' pp';
+const number=v=>new Intl.NumberFormat('en').format(v);
+if(ilo.rows.length!==12||ilo.changes.length!==3||pip.rows.length!==4||euro.rows.length!==3)throw new Error('Unexpected saved example coverage');
+const trend=pip.comparisons.find(c=>c.kind==='change');
+const revision=pip.comparisons.find(c=>c.kind==='revision');
+const world=pip.rows.filter(r=>r.entity==='WLD');
+const examples=[{
+  id:'ilostat',name:'ILOSTAT',
+  question:'How did youth NEET change in Moldova, Georgia and Serbia from 2021 to 2024?',
+  headline:'Lower shares in the three selected series',
+  summary:'The share of people aged 15–24 outside employment, education or training fell between the selected endpoints. The snapshot includes all four annual observations for each country.',
+  tables:[{caption:'Young people not in employment, education or training · ages 15–24 · both sexes',columns:['Country','2021','2024','Change'],rows:ilo.changes.map(c=>[ilo.rows.find(r=>r.ref_area===c.country)?.country??c.country,pct(c.startValue),pct(c.endValue),pp(c.changePercentagePoints)])}],
+  provenance:'ILOSTAT · SDG_0861_SEX_RT_A · retrieved '+ilo.retrievedAt+' · 12 observations',
+  method:'National labour-force survey series, with ILO microdata processing noted by the provider. Change = 2024 rate minus 2021 rate, in percentage points. The selection keeps one source per country and preserves the original notes.',
+  limitation:'These rates do not explain why young people were outside work or education. They are not unemployment rates or the separate ILO modelled-estimates series. A break flag in Georgia’s 2020 observation is one reason this example starts in 2021.',
+  prompt:'Use public-kit to compare youth NEET (ages 15–24, both sexes) in Moldova, Georgia and Serbia from 2021 to 2024 using ILOSTAT. Show each annual value, source and flags; calculate endpoint changes in percentage points only where comparable. Save the selection and extract for a later update.',
+  repeat:'Keep the country, age, sex, indicator and source selection. Recheck flags and retrieve the same years when updating, so revisions remain visible. The repository README gives the command and limits.',
+  dataUrl:iloPath,codeUrl:'https://github.com/klmnki/public-kit/tree/main/examples/ilostat',sourceUrl:ilo.source.documentation
+},{
+  id:'pip',name:'World Bank PIP',
+  question:'How did poverty change in Georgia, and how was the global 2024 estimate revised?',
+  headline:'A change over time and a revision to the same year',
+  summary:'Georgia’s selected rate changed by '+pp(trend.differencePercentagePoints)+' from 2020 to 2024. Separately, the September release revised the global 2024 estimate by '+pp(revision.differencePercentagePoints)+' relative to March. The second comparison describes revised estimates of the same year.',
+  tables:[{caption:'Georgia · $3.00 per person per day · 2021 PPP · September 2026 release',columns:['Measure','2020','2024','Change'],rows:[['Poverty rate',pct(trend.beforePercent),pct(trend.afterPercent),pp(trend.differencePercentagePoints)]]},{caption:'World · reference year 2024 · same poverty line and PPP basis',columns:['Release','Poverty rate','People in poverty'],rows:world.map(r=>[r.releaseVersion==='20260324'?'March 2026':'September 2026',pct(r.headcountPercent),number(r.peopleInPoverty)])}],
+  provenance:'World Bank PIP · versions '+pip.versions.map(v=>v.version).join(' / ')+' · retrieved '+pip.retrievedAt,
+  method:'Use the exact API version to fix the PPP basis. Multiply headcount fractions by 100 for percentages; subtract rates for percentage-point differences. Preserve published counts rather than reconstructing them from rounded rates.',
+  limitation:'The international poverty line differs from national poverty measures. Georgia uses comparable national consumption survey estimates. Global historical estimates combine country evidence; a revision is not poverty reduction between the two publication dates.',
+  prompt:'Use public-kit and PIP to compare Georgia’s national consumption poverty rate at $3/day, 2021 PPP, in 2020 and 2024 using version 20260922_2021_01_02_PROD. Separately compare the global 2024 estimate in versions 20260324_2021_01_02_PROD and 20260922_2021_01_02_PROD. Keep time changes and same-year revisions separate, with exact requests and source notes.',
+  repeat:'Choose and record the next production release from /versions. Compare its reference-year values with the saved release; keep the poverty line and PPP basis fixed. A PPP change requires a new comparable series.',
+  dataUrl:'examples/pip/snapshot.json',codeUrl:'https://github.com/klmnki/public-kit/tree/main/examples/pip',sourceUrl:pip.source.documentation
+},{
+  id:'eurostat',name:'Eurostat',
+  question:'What do the latest three dataset months contain, and what changed since the earlier snapshot?',
+  headline:'6.1% in July and August; September has no value yet',
+  summary:'The rolling query returned three month labels but only two observations. July and August match the earlier snapshot. September remains missing; June falls outside the new query window.',
+  tables:[{caption:'EU27 monthly unemployment · seasonally adjusted · total age and sex',columns:['Period','Rate (% of labour force)','Status'],rows:euro.rows.map(r=>[r.period,r.value===null?'Not available':r.value.toFixed(1)+'%',r.value===null?'Missing observation':r.status||'No flag returned'])}],
+  provenance:'Eurostat · une_rt_m · source updated '+euro.source.updated+' · retrieved '+euro.retrievedAt,
+  method:'Decode the actual JSON-stat dimension indexes. Compare snapshots with matching geography, age, sex, adjustment and unit. Report new observations, revised values and changed flags separately, retaining missing values.',
+  limitation:'The latest dataset period is not necessarily the latest available observation. These are EU aggregate rates, not RBEC or national estimates. Identical rounded rates do not imply unchanged unemployment counts.',
+  prompt:'Use public-kit to retrieve the latest three dataset periods of EU27 monthly unemployment from Eurostat une_rt_m: total age and sex, seasonally adjusted, percentage of the labour force. Preserve missing values. Compare with my saved snapshot, separating new observations, revisions, flag changes and periods outside the new window.',
+  repeat:'Run the script with --last 3 and --previous pointing to a saved snapshot. Use a longer overlapping period when you need to inspect older revisions. Each successful run saves a dated file; no automatic schedule is configured.',
+  dataUrl:euroPath,codeUrl:'https://github.com/klmnki/public-kit/tree/main/examples/eurostat',sourceUrl:euro.source.documentation
+}];
+await writeFile('data/repeatable-examples.json',JSON.stringify({schemaVersion:1,examples},null,2)+'\n');
+console.log('Generated three public examples from verified snapshots.');

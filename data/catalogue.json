@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "scope": "Free routes operated by public institutions",
   "sources": [
     {
@@ -106,14 +106,14 @@
       "name": "Eurostat",
       "operator": "European Commission",
       "useFor": "European statistical tables",
-      "exampleQuestion": "Retrieve the EU population at the start of 2024.",
-      "documentationUrl": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started",
+      "exampleQuestion": "Retrieve the latest three dataset periods of EU unemployment and distinguish missing observations from revisions.",
+      "documentationUrl": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics",
       "access": "Free, no account",
-      "request": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?lang=en&geo=EU27_2020&time=2024&age=TOTAL&sex=T",
+      "request": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m?lang=en&freq=M&geo=EU27_2020&sex=T&age=TOTAL&unit=PC_ACT&s_adj=SA&lastTimePeriod=3",
       "discovery": "Choose the dataset in the Data Browser, confirm its dimensions and use their codes. Keep the query small before widening geography or time.",
-      "parse": "Decode JSON-stat using id, size and dimension; map indexed value and status entries back to their categories. Preserve updated and statistical flags. The sample returned one observation with ep flags.",
-      "limitation": "A value array can contain several dimensions. Do not treat it as a ready-made country/year table or omit provisional/estimated flags.",
-      "verification": "Sample returned data on 10 October 2026"
+      "parse": "Decode JSON-stat id, size and category indexes; preserve values, statistical flags, missing observations and source update time. Keep geography, age, sex, unit and adjustment fixed when comparing snapshots.",
+      "limitation": "Latest dataset periods can include missing observations. In the 11 October check, July and August 2026 were 6.1%; September was null. A period outside a shorter query window is not a withdrawn observation.",
+      "verification": "Fixed and rolling monthly requests returned observations on 11 October 2026; dated snapshots and comparison tests included."
     },
     {
       "id": "oecd",
@@ -226,6 +226,34 @@
       "parse": "Run the generated client.retrieve(dataset, request, target) request after checking scope. The service queues jobs and returns files such as NetCDF or GRIB. Confirm the runtime can read the format before a large download. Preserve product version, units, grid, coordinates, calendar and time basis.",
       "limitation": "Reanalysis is a modelled reconstruction. A baseline comparison needs consistent products and periods. Account setup, terms and authenticated retrieval were not tested in this release.",
       "verification": "Documentation checked; requires user credentials"
+    },
+    {
+      "id": "ilostat",
+      "name": "ILOSTAT",
+      "operator": "International Labour Organization",
+      "useFor": "Labour indicators and youth NEET",
+      "exampleQuestion": "How did youth NEET change in Moldova, Georgia and Serbia from 2021 to 2024?",
+      "documentationUrl": "https://ilostat.ilo.org/data/bulk/",
+      "access": "Free public CSV downloads, no account",
+      "request": "https://rplumber.ilo.org/data/indicator?id=SDG_0861_SEX_RT_A&format=.csv.gz",
+      "discovery": "Select a table from the bulk catalogue. Read indicator, source and country dictionaries; this annual SDG series covers NEET ages 15–24. Filter ref_area MDA/GEO/SRB, sex SEX_T and years 2021–2024 after decompressing the public CSV.",
+      "parse": "Preserve source, indicator, sex, time, obs_value, obs_status, note_indicator and note_source. Use one comparable source per country/year. Keep nulls and withhold differences across source changes or break flags. Differences between rates are percentage points.",
+      "limitation": "National survey series, distinct from ILO modelled estimates. NEET is not unemployment. Provider notes identify ILO microdata processing; values can differ from national or SDG publications. A country average is not a regional rate.",
+      "verification": "Anonymous download returned 12 selected observations on 11 October 2026; empty selection and comparability checks passed."
+    },
+    {
+      "id": "world-bank-pip",
+      "name": "World Bank PIP",
+      "operator": "World Bank",
+      "useFor": "Poverty estimates and release revisions",
+      "exampleQuestion": "How did poverty change in Georgia, and how did the global estimate for the same year change between releases?",
+      "documentationUrl": "https://pip.worldbank.org/api",
+      "access": "Free API, no account",
+      "request": "https://api.worldbank.org/pip/v1/pip?country=GEO&year=2020%2C2024&povline=3&version=20260922_2021_01_02_PROD&fill_gaps=false&reporting_level=national&welfare_type=consumption&format=json",
+      "discovery": "Read /pip/v1/versions, confirm ppp_version=2021 and pin the exact production version. The observation field ppp is a conversion factor, not the PPP year. Use /pip for country surveys and /pip-grp for published aggregates.",
+      "parse": "Convert headcount fractions to percentages and preserve supplied population-in-poverty counts, survey/reporting years, welfare type, comparability and estimate flags. Keep time changes within one release separate from same-year revisions across releases.",
+      "limitation": "International poverty differs from national poverty measures. A revised 2024 estimate does not show poverty change between publication dates. Historical aggregate flags do not imply every component was observed in that year.",
+      "verification": "Four observations returned on 11 October 2026: Georgia 2020/2024 and world 2024 in March/September releases. Invalid version failed as expected; comparison checks passed."
     }
   ]
 }

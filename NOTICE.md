@@ -17,3 +17,10 @@ The source directory contains authored instructions and links to provider docume
 [sgarcese's Civic Analytics Agent Workflow](https://github.com/sgarcese/Civic-Analytics-Agent-Workflow-Claude-Skill) inspired the decision to share this work as a skill. Public Kit uses independently written instructions. The GenAI Builders work informed its question-to-data approach.
 
 Public Kit is a personal project. The listed institutions do not endorse it, and their names identify the sources they operate.
+## Repeatable examples added in 0.3
+
+- **ILOSTAT:** SDG 8.6.1, youth NEET ages 15–24, both sexes, selected Moldova/Georgia/Serbia observations for 2021–2024; accessed 11 October 2026. [ILO's data licence](https://www.ilo.org/rights-and-permissions) is CC BY 4.0 for current public datasets. The extract preserves source and note codes; Public Kit adds labels and percentage-point calculations. See [provenance](examples/ilostat/README.md).
+- **World Bank PIP:** $3.00/day, 2021 PPP, versions 20260324_2021_01_02_PROD and 20260922_2021_01_02_PROD; accessed 11 October 2026. Data use [CC BY 4.0](https://datacatalog.worldbank.org/search/dataset/0038020/poverty-and-equity-database-poverty-and-inequality-platform). Public Kit retains responses and adds percentages, time changes and same-year revision calculations. See [provenance](examples/pip/README.md).
+- **Eurostat:** une_rt_m, EU27_2020, monthly, total age/sex, seasonally adjusted, percentage of the labour force; accessed 11 October 2026. Reuse follows [Eurostat's copyright notice](https://ec.europa.eu/eurostat/about-us/policies/copyright). Public Kit decodes the series, preserves missing values and compares dated snapshots. See [provenance](examples/eurostat/README.md).
+
+Provider data and names retain their own rights. The repository's MIT licence covers original code and instructions, not ownership of the underlying datasets. The public tables round rates for display; JSON snapshots retain the retrieved precision and provenance.

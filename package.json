@@ -1,12 +1,14 @@
 {
   "name": "public-kit",
-  "version": "0.2.0-rc.1",
+  "version": "0.3.0-rc.1",
   "private": true,
   "type": "module",
-  "description": "One skill file for using 16 free institutional APIs through Codex or Claude Code.",
-  "engines": {"node": ">=22"},
+  "description": "18 free institutional data guides for Codex and Claude, with reproducible analysis examples.",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test tests/*.test.mjs examples/ilostat/*.test.mjs examples/pip/*.test.mjs examples/eurostat/tests/*.test.mjs",
     "build": "node scripts/build.mjs",
     "preview": "node scripts/serve.mjs"
   }

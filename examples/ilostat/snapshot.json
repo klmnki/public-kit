@@ -1,0 +1,342 @@
+{
+  "source": {
+    "name": "ILOSTAT, International Labour Organization",
+    "documentation": "https://ilostat.ilo.org/data/bulk/",
+    "catalogue": "https://rplumber.ilo.org/files/website/bulk/indicator.html",
+    "licence": "CC BY 4.0 (ILO databases and datasets published from 3 May 2023)",
+    "licenceUrl": "https://www.ilo.org/rights-and-permissions"
+  },
+  "requests": [
+    {
+      "url": "https://rplumber.ilo.org/data/indicator?id=SDG_0861_SEX_RT_A&format=.csv.gz",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 85065,
+      "sha256": "9d26a29b7c6a19fec777e83d7ab7cf3c8ad76fc7eef00d8db5292b66ac4e602c"
+    },
+    {
+      "url": "https://rplumber.ilo.org/metadata/dic?var=source&lang=en&format=.csv",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 214163,
+      "sha256": "f0fe6308df810781ff4e71d27f90247f4cc879850d74b6343cb456a017dbf101"
+    },
+    {
+      "url": "https://rplumber.ilo.org/metadata/dic?var=ref_area&lang=en&format=.csv",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 7816,
+      "sha256": "73483867f9fee42ede25ac4d07c5a5a3b1ef1df5b2db68a3b24ad5666a7e3cf7"
+    },
+    {
+      "url": "https://rplumber.ilo.org/metadata/dic?var=indicator&lang=en&format=.csv",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 1391204,
+      "sha256": "fc5aa1677cdc465ea1b968c9fd05ad707d8758dddebceab1af322b0adae4a1aa"
+    },
+    {
+      "url": "https://rplumber.ilo.org/metadata/dic?var=note_source&lang=en&format=.csv",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 14606,
+      "sha256": "35d6f835d68b89a3fae98f462b4d2ea4f8ce8aca24bf0b49eec3f4cabb43b9fd"
+    }
+  ],
+  "retrievedAt": "2026-10-11T14:46:53.313Z",
+  "question": "How did the share of young people outside employment, education or training change in MDA, GEO, SRB from 2021 to 2024?",
+  "measure": "SDG 8.6.1: youth not in employment, education or training (NEET), ages 15–24, both sexes",
+  "unit": "percent of youth aged 15–24",
+  "selection": {
+    "countries": [
+      "MDA",
+      "GEO",
+      "SRB"
+    ],
+    "start": 2021,
+    "end": 2024,
+    "sex": "SEX_T"
+  },
+  "status": "data",
+  "rows": [
+    {
+      "ref_area": "MDA",
+      "source": "BA:571",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2021",
+      "obs_value": "13.55",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2021,
+      "value": 13.55,
+      "country": "Republic of Moldova",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "MDA",
+      "source": "BA:571",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2022",
+      "obs_value": "14.963",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2022,
+      "value": 14.963,
+      "country": "Republic of Moldova",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "MDA",
+      "source": "BA:571",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2023",
+      "obs_value": "13.308",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2023,
+      "value": 13.308,
+      "country": "Republic of Moldova",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "MDA",
+      "source": "BA:571",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2024",
+      "obs_value": "11.491",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2024,
+      "value": 11.491,
+      "country": "Republic of Moldova",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "GEO",
+      "source": "BA:13950",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2021",
+      "obs_value": "22.357",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2021,
+      "value": 22.357,
+      "country": "Georgia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "GEO",
+      "source": "BA:13950",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2022",
+      "obs_value": "20.166",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2022,
+      "value": 20.166,
+      "country": "Georgia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "GEO",
+      "source": "BA:13950",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2023",
+      "obs_value": "18.049",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2023,
+      "value": 18.049,
+      "country": "Georgia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "GEO",
+      "source": "BA:13950",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2024",
+      "obs_value": "14.692",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2024,
+      "value": 14.692,
+      "country": "Georgia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "SRB",
+      "source": "BA:467",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2021",
+      "obs_value": "16.714",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2021,
+      "value": 16.714,
+      "country": "Serbia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "SRB",
+      "source": "BA:467",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2022",
+      "obs_value": "13.231",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2022,
+      "value": 13.231,
+      "country": "Serbia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "SRB",
+      "source": "BA:467",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2023",
+      "obs_value": "12.397",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2023,
+      "value": 12.397,
+      "country": "Serbia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    },
+    {
+      "ref_area": "SRB",
+      "source": "BA:467",
+      "indicator": "SDG_0861_SEX_RT",
+      "sex": "SEX_T",
+      "time": "2024",
+      "obs_value": "12.598",
+      "obs_status": "",
+      "note_indicator": "",
+      "note_source": "R1:3513",
+      "year": 2024,
+      "value": 12.598,
+      "country": "Serbia",
+      "sourceLabel": "LFS - Labour Force Survey",
+      "observationType": "Labour Force Survey estimate, processed by ILOSTAT"
+    }
+  ],
+  "changes": [
+    {
+      "country": "MDA",
+      "startYear": 2021,
+      "endYear": 2024,
+      "startValue": 13.55,
+      "endValue": 11.491,
+      "changePercentagePoints": -2.059,
+      "reason": null
+    },
+    {
+      "country": "GEO",
+      "startYear": 2021,
+      "endYear": 2024,
+      "startValue": 22.357,
+      "endValue": 14.692,
+      "changePercentagePoints": -7.665,
+      "reason": null
+    },
+    {
+      "country": "SRB",
+      "startYear": 2021,
+      "endYear": 2024,
+      "startValue": 16.714,
+      "endValue": 12.598,
+      "changePercentagePoints": -4.116,
+      "reason": null
+    }
+  ],
+  "missing": [],
+  "metadata": {
+    "source": [
+      {
+        "source": "BA:13950",
+        "source.label": "LFS - Labour Force Survey",
+        "ref_area": "GEO"
+      },
+      {
+        "source": "BA:571",
+        "source.label": "LFS - Labour Force Survey",
+        "ref_area": "MDA"
+      },
+      {
+        "source": "BA:467",
+        "source.label": "LFS - Labour Force Survey",
+        "ref_area": "SRB"
+      }
+    ],
+    "ref_area": [
+      {
+        "ref_area": "GEO",
+        "ref_area.label": "Georgia"
+      },
+      {
+        "ref_area": "MDA",
+        "ref_area.label": "Republic of Moldova"
+      },
+      {
+        "ref_area": "SRB",
+        "ref_area.label": "Serbia"
+      }
+    ],
+    "indicator": [
+      {
+        "indicator": "SDG_0861_SEX_RT",
+        "indicator.label": "SDG indicator 8.6.1: Proportion of youth aged 15 to 24 years not in education, employment or training by sex (%)",
+        "indicator.description": "<strong>Data may differ from nationally reported figures and the Global SDG Indicators Database due to differences in sources and/or reference years.</strong> The share of youth not in employment, education, or training (also known as the NEET rate) conveys the number of young persons not in education, employment or training as a percentage of the total youth population. It provides a measure of youth who are outside the educational system, not in training and not in employment, and thus serves as a broader measure of potential youth labour market entrants than youth unemployment, since it also includes young persons outside the labour force not in education or training. This indicator is also a better measure of the current universe of potential youth labour market entrants compared to the youth inactivity rate, as the latter includes those youth who are not in the labour force and are in education, and thus cannot be considered currently available for work. For more information, refer to the <a href=\"https://ilostat.ilo.org/methods/concepts-and-definitions/description-sustainable-development-labour-market-indicators/\">Labour Market-related SDG Indicators (ILOSDG) database description</a>.</p>"
+      }
+    ],
+    "note_source": [
+      {
+        "note_source": "R1:3513",
+        "note_source.label": "Repository: ILO-STATISTICS - Micro data processing"
+      }
+    ],
+    "note_indicator": [],
+    "obs_status": []
+  },
+  "limitations": [
+    "National percentages; no regional total or unweighted country average is calculated.",
+    "The selected SDG survey series is distinct from ILO modelled estimates. Retain source and note codes; an empty flag is not proof that estimates are exact.",
+    "ILOSTAT warns that this series can differ from nationally reported figures and the Global SDG Database because sources and reference years differ.",
+    "Differences are percentage points, not percentage changes. A change does not establish its cause.",
+    "NEET is not the unemployment rate: it also includes young people outside the labour force who are not in education or training.",
+    "The CSV download contains more countries and years; only the stated extract is retained. Revisions can change a future retrieval.",
+    "A missing row or value remains missing, never zero. Changes are withheld for missing endpoints, a B flag or a source change within the selected period."
+  ]
+}

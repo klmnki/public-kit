@@ -1,0 +1,448 @@
+{
+  "id": "pip-poverty-change-and-revision",
+  "question": "How did extreme poverty change in Georgia from 2020 to 2024, and how did the March and September 2026 releases revise the global estimate for 2024?",
+  "source": {
+    "name": "World Bank Poverty and Inequality Platform",
+    "url": "https://pip.worldbank.org/",
+    "documentation": "https://pip.worldbank.org/api",
+    "clientDocumentation": "https://github.com/worldbank/pipr/blob/main/R/get_stats.R",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://datacatalog.worldbank.org/search/dataset/0038020/poverty-and-equity-database-poverty-and-inequality-platform"
+  },
+  "retrievedAt": "2026-10-11T14:41:04.896Z",
+  "kind": "saved live response",
+  "measure": "Poverty headcount below $3.00 per person per day, 2021 purchasing power parity",
+  "unit": "percent of population; differences in percentage points; published counts in people",
+  "versions": [
+    {
+      "version": "20260324_2021_01_02_PROD",
+      "release_version": "20260324",
+      "ppp_version": "2021",
+      "identity": "PROD"
+    },
+    {
+      "version": "20260922_2021_01_02_PROD",
+      "release_version": "20260922",
+      "ppp_version": "2021",
+      "identity": "PROD"
+    }
+  ],
+  "rows": [
+    {
+      "entity": "GEO",
+      "name": "Georgia",
+      "kind": "country",
+      "reportingYear": 2020,
+      "surveyYear": 2020,
+      "version": "20260922_2021_01_02_PROD",
+      "releaseVersion": "20260922",
+      "pppYear": 2021,
+      "povertyLine": 3,
+      "headcountFraction": 0.1198,
+      "headcountPercent": 11.98,
+      "peopleInPoverty": null,
+      "reportingPopulation": 3722716,
+      "welfareType": "consumption",
+      "reportingLevel": "national",
+      "surveyCoverage": "national",
+      "surveyAcronym": "HIS",
+      "surveyComparability": 2,
+      "comparableSpell": "1998 - 2024",
+      "estimationType": "survey",
+      "estimateType": null,
+      "isInterpolated": false,
+      "nowcast": false,
+      "pppConversionFactor": 1.0735
+    },
+    {
+      "entity": "GEO",
+      "name": "Georgia",
+      "kind": "country",
+      "reportingYear": 2024,
+      "surveyYear": 2024,
+      "version": "20260922_2021_01_02_PROD",
+      "releaseVersion": "20260922",
+      "pppYear": 2021,
+      "povertyLine": 3,
+      "headcountFraction": 0.0423,
+      "headcountPercent": 4.23,
+      "peopleInPoverty": null,
+      "reportingPopulation": 3699557,
+      "welfareType": "consumption",
+      "reportingLevel": "national",
+      "surveyCoverage": "national",
+      "surveyAcronym": "HIS",
+      "surveyComparability": 2,
+      "comparableSpell": "1998 - 2024",
+      "estimationType": "survey",
+      "estimateType": null,
+      "isInterpolated": false,
+      "nowcast": false,
+      "pppConversionFactor": 1.0735
+    },
+    {
+      "entity": "WLD",
+      "name": "World",
+      "kind": "aggregate",
+      "reportingYear": 2024,
+      "surveyYear": null,
+      "version": "20260324_2021_01_02_PROD",
+      "releaseVersion": "20260324",
+      "pppYear": 2021,
+      "povertyLine": 3,
+      "headcountFraction": 0.104,
+      "headcountPercent": 10.4,
+      "peopleInPoverty": 846762143,
+      "reportingPopulation": 8141808945,
+      "welfareType": null,
+      "reportingLevel": null,
+      "surveyCoverage": null,
+      "surveyAcronym": null,
+      "surveyComparability": null,
+      "comparableSpell": null,
+      "estimationType": null,
+      "estimateType": "actual",
+      "isInterpolated": null,
+      "nowcast": false,
+      "pppConversionFactor": null
+    },
+    {
+      "entity": "WLD",
+      "name": "World",
+      "kind": "aggregate",
+      "reportingYear": 2024,
+      "surveyYear": null,
+      "version": "20260922_2021_01_02_PROD",
+      "releaseVersion": "20260922",
+      "pppYear": 2021,
+      "povertyLine": 3,
+      "headcountFraction": 0.1012,
+      "headcountPercent": 10.12,
+      "peopleInPoverty": 824298368,
+      "reportingPopulation": 8141808945,
+      "welfareType": null,
+      "reportingLevel": null,
+      "surveyCoverage": null,
+      "surveyAcronym": null,
+      "surveyComparability": null,
+      "comparableSpell": null,
+      "estimationType": null,
+      "estimateType": "actual",
+      "isInterpolated": null,
+      "nowcast": false,
+      "pppConversionFactor": null
+    }
+  ],
+  "comparisons": [
+    {
+      "kind": "change",
+      "entity": "GEO",
+      "fromYear": 2020,
+      "toYear": 2024,
+      "fromVersion": "20260922_2021_01_02_PROD",
+      "toVersion": "20260922_2021_01_02_PROD",
+      "beforePercent": 11.98,
+      "afterPercent": 4.23,
+      "differencePercentagePoints": -7.75,
+      "differencePeople": null
+    },
+    {
+      "kind": "revision",
+      "entity": "WLD",
+      "fromYear": 2024,
+      "toYear": 2024,
+      "fromVersion": "20260324_2021_01_02_PROD",
+      "toVersion": "20260922_2021_01_02_PROD",
+      "beforePercent": 10.4,
+      "afterPercent": 10.12,
+      "differencePercentagePoints": -0.28,
+      "differencePeople": -22463775
+    }
+  ],
+  "requests": [
+    {
+      "id": "versions",
+      "url": "https://api.worldbank.org/pip/v1/versions",
+      "retrievedAt": "2026-10-11T14:41:05.223Z",
+      "status": 200,
+      "bytes": 1927,
+      "response": [
+        {
+          "version": "20260922_2021_01_02_PROD",
+          "release_version": "20260922",
+          "ppp_version": "2021",
+          "identity": "PROD"
+        },
+        {
+          "version": "20260922_2017_01_02_PROD",
+          "release_version": "20260922",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20260324_2021_01_02_PROD",
+          "release_version": "20260324",
+          "ppp_version": "2021",
+          "identity": "PROD"
+        },
+        {
+          "version": "20260324_2017_01_02_PROD",
+          "release_version": "20260324",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20250930_2021_01_02_PROD",
+          "release_version": "20250930",
+          "ppp_version": "2021",
+          "identity": "PROD"
+        },
+        {
+          "version": "20250930_2017_01_02_PROD",
+          "release_version": "20250930",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20250401_2021_01_02_PROD",
+          "release_version": "20250401",
+          "ppp_version": "2021",
+          "identity": "PROD"
+        },
+        {
+          "version": "20250401_2017_01_02_PROD",
+          "release_version": "20250401",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20240627_2017_01_02_PROD",
+          "release_version": "20240627",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20240627_2011_02_02_PROD",
+          "release_version": "20240627",
+          "ppp_version": "2011",
+          "identity": "PROD"
+        },
+        {
+          "version": "20240326_2017_01_02_PROD",
+          "release_version": "20240326",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20240326_2011_02_02_PROD",
+          "release_version": "20240326",
+          "ppp_version": "2011",
+          "identity": "PROD"
+        },
+        {
+          "version": "20230919_2017_01_02_PROD",
+          "release_version": "20230919",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20230919_2011_02_02_PROD",
+          "release_version": "20230919",
+          "ppp_version": "2011",
+          "identity": "PROD"
+        },
+        {
+          "version": "20230328_2017_01_02_PROD",
+          "release_version": "20230328",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20230328_2011_02_02_PROD",
+          "release_version": "20230328",
+          "ppp_version": "2011",
+          "identity": "PROD"
+        },
+        {
+          "version": "20220909_2017_01_02_PROD",
+          "release_version": "20220909",
+          "ppp_version": "2017",
+          "identity": "PROD"
+        },
+        {
+          "version": "20220909_2011_02_02_PROD",
+          "release_version": "20220909",
+          "ppp_version": "2011",
+          "identity": "PROD"
+        }
+      ]
+    },
+    {
+      "id": "georgia",
+      "url": "https://api.worldbank.org/pip/v1/pip?country=GEO&year=2020%2C2024&povline=3&version=20260922_2021_01_02_PROD&fill_gaps=false&reporting_level=national&welfare_type=consumption&format=json",
+      "retrievedAt": "2026-10-11T14:41:05.393Z",
+      "status": 200,
+      "bytes": 1802,
+      "response": [
+        {
+          "region_name": "Europe & Central Asia",
+          "region_code": "ECS",
+          "country_name": "Georgia",
+          "country_code": "GEO",
+          "reporting_year": 2020,
+          "reporting_level": "national",
+          "survey_acronym": "HIS",
+          "survey_coverage": "national",
+          "survey_year": 2020,
+          "welfare_type": "consumption",
+          "survey_comparability": 2,
+          "comparable_spell": "1998 - 2024",
+          "poverty_line": 3,
+          "headcount": 0.1198,
+          "poverty_gap": 0.0314,
+          "poverty_severity": 0.0129,
+          "watts": 0.0422,
+          "mean": 7.7513,
+          "median": 6.4429,
+          "mld": 0.2045,
+          "gini": 0.3446,
+          "polarization": 0.2967,
+          "decile1": 0.0268,
+          "decile2": 0.0428,
+          "decile3": 0.0542,
+          "decile4": 0.0655,
+          "decile5": 0.0768,
+          "decile6": 0.0898,
+          "decile7": 0.1052,
+          "decile8": 0.1239,
+          "decile9": 0.1531,
+          "decile10": 0.262,
+          "cpi": 0.9127,
+          "ppp": 1.0735,
+          "reporting_pop": 3722716,
+          "reporting_gdp": 4659.6093,
+          "reporting_pce": 3982.3849,
+          "is_interpolated": false,
+          "distribution_type": "micro",
+          "estimation_type": "survey",
+          "spl": 4.521,
+          "spr": 0.2856,
+          "pg": 5.4933,
+          "estimate_type": null
+        },
+        {
+          "region_name": "Europe & Central Asia",
+          "region_code": "ECS",
+          "country_name": "Georgia",
+          "country_code": "GEO",
+          "reporting_year": 2024,
+          "reporting_level": "national",
+          "survey_acronym": "HIS",
+          "survey_coverage": "national",
+          "survey_year": 2024,
+          "welfare_type": "consumption",
+          "survey_comparability": 2,
+          "comparable_spell": "1998 - 2024",
+          "poverty_line": 3,
+          "headcount": 0.0423,
+          "poverty_gap": 0.0092,
+          "poverty_severity": 0.0031,
+          "watts": 0.0115,
+          "mean": 10.7141,
+          "median": 8.7715,
+          "mld": 0.1934,
+          "gini": 0.3385,
+          "polarization": 0.2877,
+          "decile1": 0.0286,
+          "decile2": 0.0443,
+          "decile3": 0.0559,
+          "decile4": 0.0664,
+          "decile5": 0.0768,
+          "decile6": 0.0884,
+          "decile7": 0.103,
+          "decile8": 0.1221,
+          "decile9": 0.1526,
+          "decile10": 0.262,
+          "cpi": 1.1595,
+          "ppp": 1.0735,
+          "reporting_pop": 3699557,
+          "reporting_gdp": 6808.074,
+          "reporting_pce": 5010.3721,
+          "is_interpolated": false,
+          "distribution_type": "micro",
+          "estimation_type": "survey",
+          "spl": 5.686,
+          "spr": 0.2256,
+          "pg": 3.8389,
+          "estimate_type": null
+        }
+      ]
+    },
+    {
+      "id": "world-march",
+      "url": "https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260324_2021_01_02_PROD&group_by=world&format=json",
+      "retrievedAt": "2026-10-11T14:41:05.546Z",
+      "status": 200,
+      "bytes": 283,
+      "response": [
+        {
+          "region_code": "WLD",
+          "region_name": "World",
+          "reporting_year": 2024,
+          "poverty_line": 3,
+          "reporting_pop": 8141808945,
+          "headcount": 0.104,
+          "poverty_gap": 0.0356,
+          "poverty_severity": 0.0178,
+          "watts": 0.0639,
+          "mean": 21.6153,
+          "spr": 0.2489,
+          "pg": 4.6327,
+          "pop_in_poverty": 846762143,
+          "estimate_type": "actual"
+        }
+      ]
+    },
+    {
+      "id": "world-september",
+      "url": "https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260922_2021_01_02_PROD&group_by=world&format=json",
+      "retrievedAt": "2026-10-11T14:41:05.699Z",
+      "status": 200,
+      "bytes": 284,
+      "response": [
+        {
+          "region_code": "WLD",
+          "region_name": "World",
+          "reporting_year": 2024,
+          "poverty_line": 3,
+          "reporting_pop": 8141808945,
+          "headcount": 0.1012,
+          "poverty_gap": 0.0351,
+          "poverty_severity": 0.0177,
+          "watts": 0.0631,
+          "mean": 21.6119,
+          "spr": 0.2438,
+          "pg": 4.5992,
+          "pop_in_poverty": 824298368,
+          "estimate_type": "actual"
+        }
+      ]
+    }
+  ],
+  "negativeCheck": {
+    "url": "https://api.worldbank.org/pip/v1/pip?country=GEO&year=2024&povline=3&version=INVALID&format=json",
+    "retrievedAt": "2026-10-11T14:41:05.879Z",
+    "status": 404,
+    "result": "Invalid version rejected; no observations inferred."
+  },
+  "limitations": [
+    "Pinned release versions confirm the 2021 PPP basis through /versions. The observation field ppp is a conversion factor, not a year.",
+    "The March API version is dated 20260324; the accompanying public update was published on 26 March 2026.",
+    "Georgia rows are national consumption survey estimates with the same comparability spell, no interpolation and matching survey/reporting years. They are not causal programme-impact estimates.",
+    "World actual is the provider estimate_type label for its historical aggregate. It does not mean every country component was directly observed in 2024.",
+    "A same-year revision across releases is not a change in poverty between their publication dates.",
+    "Rates use the precision returned by the API. Published people-in-poverty counts are retained directly; multiplying the rounded headcount by population would give a different count.",
+    "The example uses the international extreme-poverty line, not national poverty lines or a general measure of deprivation.",
+    "Four numeric rows and one negative request were checked. Other countries, poverty lines, nowcasts and access patterns are outside this example."
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "source": {
+    "name": "ILOSTAT, International Labour Organization",
+    "documentation": "https://ilostat.ilo.org/data/bulk/",
+    "catalogue": "https://rplumber.ilo.org/files/website/bulk/indicator.html",
+    "licence": "CC BY 4.0 (ILO databases and datasets published from 3 May 2023)",
+    "licenceUrl": "https://www.ilo.org/rights-and-permissions"
+  },
+  "requests": [
+    {
+      "url": "https://rplumber.ilo.org/data/indicator?id=SDG_0861_SEX_RT_A&format=.csv.gz",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 85065,
+      "sha256": "9d26a29b7c6a19fec777e83d7ab7cf3c8ad76fc7eef00d8db5292b66ac4e602c"
+    },
+    {
+      "url": "https://rplumber.ilo.org/metadata/dic?var=ref_area&lang=en&format=.csv",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 7816,
+      "sha256": "73483867f9fee42ede25ac4d07c5a5a3b1ef1df5b2db68a3b24ad5666a7e3cf7"
+    },
+    {
+      "url": "https://rplumber.ilo.org/metadata/dic?var=indicator&lang=en&format=.csv",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 1391204,
+      "sha256": "fc5aa1677cdc465ea1b968c9fd05ad707d8758dddebceab1af322b0adae4a1aa"
+    }
+  ],
+  "retrievedAt": "2026-10-11T14:44:31.989Z",
+  "question": "How did the share of young people outside employment, education or training change in MDA from 1900 to 1902?",
+  "measure": "SDG 8.6.1: youth not in employment, education or training (NEET), ages 15–24, both sexes",
+  "unit": "percent of youth aged 15–24",
+  "selection": {
+    "countries": [
+      "MDA"
+    ],
+    "start": 1900,
+    "end": 1902,
+    "sex": "SEX_T"
+  },
+  "status": "no_data",
+  "rows": [],
+  "changes": [
+    {
+      "country": "MDA",
+      "startYear": 1900,
+      "endYear": 1902,
+      "startValue": null,
+      "endValue": null,
+      "changePercentagePoints": null,
+      "reason": "Missing endpoint observation"
+    }
+  ],
+  "missing": [
+    {
+      "country": "MDA",
+      "year": 1900
+    },
+    {
+      "country": "MDA",
+      "year": 1901
+    },
+    {
+      "country": "MDA",
+      "year": 1902
+    }
+  ],
+  "metadata": {
+    "source": [],
+    "ref_area": [
+      {
+        "ref_area": "MDA",
+        "ref_area.label": "Republic of Moldova"
+      }
+    ],
+    "indicator": [
+      {
+        "indicator": "SDG_0861_SEX_RT",
+        "indicator.label": "SDG indicator 8.6.1: Proportion of youth aged 15 to 24 years not in education, employment or training by sex (%)",
+        "indicator.description": "<strong>Data may differ from nationally reported figures and the Global SDG Indicators Database due to differences in sources and/or reference years.</strong> The share of youth not in employment, education, or training (also known as the NEET rate) conveys the number of young persons not in education, employment or training as a percentage of the total youth population. It provides a measure of youth who are outside the educational system, not in training and not in employment, and thus serves as a broader measure of potential youth labour market entrants than youth unemployment, since it also includes young persons outside the labour force not in education or training. This indicator is also a better measure of the current universe of potential youth labour market entrants compared to the youth inactivity rate, as the latter includes those youth who are not in the labour force and are in education, and thus cannot be considered currently available for work. For more information, refer to the <a href=\"https://ilostat.ilo.org/methods/concepts-and-definitions/description-sustainable-development-labour-market-indicators/\">Labour Market-related SDG Indicators (ILOSDG) database description</a>.</p>"
+      }
+    ],
+    "note_source": [],
+    "note_indicator": [],
+    "obs_status": []
+  },
+  "limitations": [
+    "National percentages; no regional total or unweighted country average is calculated.",
+    "The selected SDG survey series is distinct from ILO modelled estimates. Retain source and note codes; an empty flag is not proof that estimates are exact.",
+    "Differences are percentage points, not percentage changes. A change does not establish its cause.",
+    "NEET is not the unemployment rate: it also includes young people outside the labour force who are not in education or training.",
+    "The CSV download contains more countries and years; only the stated extract is retained. Revisions can change a future retrieval.",
+    "A missing row or value remains missing, never zero. Changes are withheld for missing endpoints, a B flag or a source change within the selected period."
+  ]
+}

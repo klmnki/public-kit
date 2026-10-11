@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "identity": {
+    "source": "ESTAT",
+    "endpoint": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m",
+    "dataset": "une_rt_m",
+    "dimensions": {
+      "freq": "M",
+      "geo": "EU27_2020",
+      "sex": "T",
+      "age": "TOTAL",
+      "unit": "PC_ACT",
+      "s_adj": "SA"
+    },
+    "measure": "Monthly unemployment rate, seasonally adjusted, total age and sex, EU27_2020",
+    "unit": "Percentage of active population"
+  },
+  "source": {
+    "publisher": "Eurostat, European Commission",
+    "datasetCode": "une_rt_m",
+    "label": "Unemployment by sex and age - monthly data",
+    "updated": "2026-10-08T11:00:00+0200",
+    "dataBrowser": "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=en",
+    "documentation": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics"
+  },
+  "request": {
+    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m?lang=en&freq=M&geo=EU27_2020&sex=T&age=TOTAL&unit=PC_ACT&s_adj=SA&sinceTimePeriod=2026-06&untilTimePeriod=2026-08",
+    "filters": {
+      "freq": "M",
+      "geo": "EU27_2020",
+      "sex": "T",
+      "age": "TOTAL",
+      "unit": "PC_ACT",
+      "s_adj": "SA"
+    },
+    "window": {
+      "kind": "fixed",
+      "from": "2026-06",
+      "to": "2026-08"
+    }
+  },
+  "retrievedAt": "2026-10-11T14:40:55.325Z",
+  "measure": "Monthly unemployment rate, seasonally adjusted, total age and sex, EU27_2020",
+  "unit": "Percentage of active population",
+  "dimensionLabels": {
+    "freq": "Monthly",
+    "geo": "European Union - 27 countries (from 2020)",
+    "sex": "Total",
+    "age": "Total",
+    "unit": "Percentage of population in the labour force",
+    "s_adj": "Seasonally adjusted data, not calendar adjusted data"
+  },
+  "rows": [
+    {
+      "period": "2026-06",
+      "value": 6.1,
+      "status": null,
+      "presentInResponse": true
+    },
+    {
+      "period": "2026-07",
+      "value": 6.1,
+      "status": null,
+      "presentInResponse": true
+    },
+    {
+      "period": "2026-08",
+      "value": 6.1,
+      "status": null,
+      "presentInResponse": true
+    }
+  ],
+  "limitations": [
+    "EU aggregate; this series does not describe a country, municipality or subgroup.",
+    "Percentage of the active population, seasonally adjusted. Changes in rates use percentage points.",
+    "Eurostat may revise values and flags. A comparison detects changes only in periods fetched in both snapshots.",
+    "Missing values remain null. A period outside a later query window does not imply a withdrawn observation.",
+    "The latest window follows Eurostat dataset time categories; inspect returned dates and missing values.",
+    "Equal displayed rates do not establish that unemployment counts or underlying unrounded estimates stayed constant."
+  ]
+}

@@ -7,7 +7,7 @@ import json
 
 root = Path(__file__).resolve().parents[1]
 errors = []
-skip = {'.git', 'dist', 'release', 'node_modules'}
+skip = {'.git', 'dist', 'release', 'node_modules', '.cache', 'output', '.playwright-cli'}
 patterns = [r'sk-[A-Za-z0-9_-]{20,}', r'gh[pousr]_[A-Za-z0-9]{20,}', r'AKIA[A-Z0-9]{16}', r'C:\\Users\\', r'C:\\Antigravity', r'-----BEGIN .*PRIVATE KEY-----']
 for path in root.rglob('*'):
     if not path.is_file() or any(p in skip for p in path.relative_to(root).parts) or path.name == 'audit-release.py':

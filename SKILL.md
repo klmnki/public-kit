@@ -1,15 +1,15 @@
 ---
 name: public-kit
-description: "Use free institutional APIs to answer questions in ordinary language. Select a suitable source, retrieve real observations, check coverage and return an explanation with a table, chart, map or file. Covers 16 services from the UN, World Bank, NASA, USGS, European Commission, OECD and Copernicus. Use for public-data questions, comparisons, research context or adding data to an application."
+description: "Use free institutional data APIs and downloads to answer public-data questions in ordinary language. Select a source, retrieve observations, check definitions and coverage, and return a sourced explanation, table, chart or file. Use for country comparisons, research context, repeat analyses or data for an application."
 license: MIT
 metadata:
   author: Ievgen Kylymnyk
-  version: "0.2.0-rc.1"
+  version: "0.3.0-rc.1"
 ---
 
 # Public Kit
 
-Help the user obtain and use public data through a conversation. Translate their question into suitable API requests, retrieve the data with the tools available in the session, and answer in ordinary language. Give them the underlying table or query when it helps them check or reuse the work.
+Help the user obtain and use public data through a conversation. Translate their question into suitable API requests or public-file selections, retrieve the data with the tools available in the session, and answer in ordinary language. Give them the underlying table or query when it helps them check or reuse the work.
 
 This file contains the source routes and instructions. It needs no companion skill or local reference file. The session still needs an allowed way to fetch URLs or execute HTTP requests. A skill file does not grant network access, create accounts or install tools.
 
@@ -42,9 +42,17 @@ If the user asks for an application or a repeated workflow, reuse a query that r
 
 If retrieval is unavailable, state the failed step and provide a reproducible request or a suitable alternative within the listed sources. Distinguish a prepared query from a completed retrieval. Do not invent values to finish the answer. Respect the session's authorization rules for publishing, scheduling or sending results.
 
+## Repeat an analysis when data change
+
+Keep the question's geography, measure, unit, population group, adjustment and method explicit. Save the exact request or download URL, release identifier, retrieval time and raw extract in the user's project. Preserve the previous extract when refreshing; the optional example scripts are not needed to use this file.
+
+Retrieve overlapping periods as well as new ones. Report newly available observations, revised values for the same reference period, changed statistical flags and observations that have become missing separately. A period outside a shorter new query is outside coverage, not a deleted observation. Null is not zero. Compare only compatible series; explain any change in units, PPP basis, definitions or classification first.
+
+Use the provider's release identifier where available. A fixed release can still receive corrections, so retain its retrieval date and response. The latest dataset period can have no value; identify the latest available observation separately. Repeating the task does not schedule it or cause a saved web page to refresh.
+
 ## Choose a source
 
-The directory contains 16 institution-operated services. “Free” describes the route documented here, subject to provider terms and limits. Bounded requests to 13 services returned usable responses on 10 October 2026, including metadata where indicated. OECD data requests failed that day. NASA FIRMS and Copernicus require free credentials and remain untested with authentication. These checks do not guarantee future availability.
+The directory contains 18 source guides, including two World Bank services and ILOSTAT public downloads. “Free” describes the route documented here, subject to provider terms and limits. Bounded requests to 13 services returned usable responses on 10 October 2026, including metadata where indicated. ILOSTAT, PIP and the expanded monthly Eurostat example returned observations on 11 October 2026. OECD data requests failed on the original check. NASA FIRMS and Copernicus require free credentials and remain untested with authentication. These checks do not guarantee future availability.
 
 | Source | Use for | Access |
 | --- | --- | --- |
@@ -64,6 +72,8 @@ The directory contains 16 institution-operated services. “Free” describes th
 | UN Comtrade | International trade records | Free anonymous preview; optional free account |
 | NASA FIRMS | Satellite fire detections | Free MAP_KEY required |
 | Copernicus Climate Data Store | Climate and reanalysis products | Free account, token and dataset terms required |
+| ILOSTAT | Labour indicators and youth NEET | Free public CSV downloads, no account |
+| World Bank PIP | Poverty estimates and release revisions | Free API, no account |
 
 ## Request routes
 
@@ -183,19 +193,23 @@ OCHA hosts data from multiple organisations. Check the publisher and licence of 
 
 ### 8. Eurostat
 
-European Commission. Free, no account. [Provider documentation](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started).
+European Commission. Free public access; no account. [Official API documentation](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics).
 
-Use for: European statistical tables. Example question: “Retrieve the EU population at the start of 2024.”
+Use for European statistical tables. First find the dataset in the [Data Browser](https://ec.europa.eu/eurostat/databrowser/) and confirm its indicator, geography, units, adjustment and dimensions. Start with one series and a short period.
 
-Choose the dataset in the Data Browser, confirm its dimensions and use their codes. Keep the query small before widening geography or time.
+Example question: “What was the EU unemployment rate in June, July and August 2026? Save the figures so I can check for new observations and revisions next time.”
 
 ```text
-https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?lang=en&geo=EU27_2020&time=2024&age=TOTAL&sex=T
+GET https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m?lang=en&freq=M&geo=EU27_2020&sex=T&age=TOTAL&unit=PC_ACT&s_adj=SA&sinceTimePeriod=2026-06&untilTimePeriod=2026-08
 ```
 
-Decode JSON-stat using id, size and dimension; map indexed value and status entries back to their categories. Preserve updated and statistical flags. The sample returned one observation with ep flags.
+Decode JSON-stat using `id`, `size` and each dimension's category index. Map both `value` and `status` to their categories. Preserve missing values as null, statistical flags, source update time and the full request. This selection means monthly, seasonally adjusted unemployment for the EU aggregate, total age and sex, as a percentage of the labour force. Express a difference between rates in percentage points.
 
-A value array can contain several dimensions. Do not treat it as a ready-made country/year table or omit provisional/estimated flags.
+The query returned 6.1% in each month when checked on 11 October 2026: 0.0 percentage points from June to August at the published precision. Re-fetch before calling these current values. For a rolling query, replace the two fixed-time parameters with `lastTimePeriod=3`. That parameter selects dataset periods, which can include a month with no observation for the selected series. The check returned July 6.1%, August 6.1% and September null. Do not turn the gap into zero or silently relabel the result as three available observations.
+
+When the user asks to repeat or monitor a query, save a dated snapshot with the exact dimensions, measure, unit, source, request, retrieval time and rows. Compare only snapshots with matching series identity and units. Report separately: numeric observations for periods absent from the baseline, revisions to overlapping numeric values, values newly available or missing, and changed flags. A period outside the new request window is outside the comparison; it is not a withdrawn observation. Use an overlapping date range long enough to check the revisions the user cares about. Do not schedule a recurring run unless the user asks for one.
+
+For an executable example, use [the repository example](https://github.com/klmnki/public-kit/tree/main/examples/eurostat) when available. The instruction file does not install Node.js or the script; the agent needs its own network and execution tools. It can also perform the bounded query and checks directly.
 
 ### 9. OECD Data Explorer
 
@@ -316,6 +330,64 @@ Use the dataset download form to choose a small area, time range and variable, t
 Run the generated client.retrieve(dataset, request, target) request after checking scope. The service queues jobs and returns files such as NetCDF or GRIB. Confirm the runtime can read the format before a large download. Preserve product version, units, grid, coordinates, calendar and time basis.
 
 Reanalysis is a modelled reconstruction. A baseline comparison needs consistent products and periods. Account setup, terms and authenticated retrieval were not tested in this release.
+
+### 17. ILOSTAT — labour-market indicators
+
+Use for questions about employment, unemployment, participation or youth outside employment, education or training. Begin with the [official bulk guide](https://ilostat.ilo.org/data/bulk/) and [indicator directory](https://rplumber.ilo.org/files/website/bulk/indicator.html); choose the measure, frequency, country codes, sex, age and any other classification before retrieving values.
+
+The public bulk route is anonymous: no registration, token or payment is required. For annual SDG 8.6.1, use:
+
+```text
+https://rplumber.ilo.org/data/indicator?id=SDG_0861_SEX_RT_A&format=.csv.gz
+```
+
+Decode gzip and parse CSV, including quoted cells. Select `indicator=SDG_0861_SEX_RT`, `sex=SEX_T`, explicit `ref_area` country codes and annual `time` values. This measure is the percentage of youth aged 15–24 not in employment, education or training; it is not the unemployment rate. A country-year can have multiple sources or classifications in other files: never sum or silently deduplicate them.
+
+Read relevant labels and notes through the official dictionaries:
+
+```text
+https://rplumber.ilo.org/metadata/dic?var=source&lang=en&format=.csv
+```
+
+Change `var` to `indicator`, `ref_area`, `obs_status`, `note_source`, `note_indicator`, or the classification dictionary identified in the directory. Keep source codes, observation flags and notes beside values. Distinguish survey series from ILO modelled estimates using the source metadata. Empty cells or absent rows are missing, not zero; retain a clear no-data result for empty selections.
+
+Express differences between percentages in percentage points. Check breaks, source changes, classifications and endpoint coverage before comparing years. Do not calculate regional totals from percentages. ILOSTAT warns that its estimates may differ from national publications or the Global SDG Database because sources and reference years differ. Record the exact request and retrieval date; future downloads may include revisions.
+
+Verified on 11 October 2026: 12 observations for Moldova, Georgia and Serbia, 2021–2024, with no gaps in the selected years. The records use labour-force survey sources and retain note R1:3513 for ILO microdata processing. A 1900–1902 selection returned no data. Requery before reporting fresh values.
+
+The [optional repository example](https://github.com/klmnki/public-kit/tree/main/examples/ilostat) implements the same download and checks. This skill also supports direct retrieval through the session's tools. Credit ILOSTAT and check [ILO rights and permissions](https://www.ilo.org/rights-and-permissions): current public datasets use CC BY 4.0, subject to stated exceptions.
+
+### 18. World Bank Poverty and Inequality Platform (PIP)
+
+Free, anonymous access to poverty and inequality estimates. Additional World Bank route.
+Docs: https://pip.worldbank.org/api
+Official client: https://github.com/worldbank/pipr/blob/main/R/get_stats.R
+
+Use for questions about international poverty lines, survey estimates or revisions between releases.
+Ask: “How did extreme poverty change in Georgia from 2020 to 2024, and how was the global 2024 estimate revised?”
+
+1. Read https://api.worldbank.org/pip/v1/versions and select an exact production version.
+2. Confirm its `ppp_version`; it is the PPP basis. An observation's `ppp` is a conversion factor.
+3. Inspect https://api.worldbank.org/pip/v1/valid-params?endpoint=pip for supported parameters/codes.
+4. Pin `version` in each query; use `povline=3` only with the intended 2021 PPP basis.
+
+Country starter, two national consumption survey years without gap filling:
+```text
+https://api.worldbank.org/pip/v1/pip?country=GEO&year=2020%2C2024&povline=3&version=20260922_2021_01_02_PROD&fill_gaps=false&reporting_level=national&welfare_type=consumption&format=json
+```
+World aggregate starter; change only the complete version for a same-year revision:
+```text
+https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260324_2021_01_02_PROD&group_by=world&format=json
+https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260922_2021_01_02_PROD&group_by=world&format=json
+```
+Return arrays are bounded by the requested countries/years; reject missing, duplicate or mismatched observations.
+Keep `survey_year`, `reporting_year`, welfare/coverage, `survey_comparability`, `comparable_spell`, `is_interpolated`, `estimation_type` and `estimate_type`, including nulls. Identify nowcasts explicitly; do not turn a null flag into observed status.
+Convert `headcount` from a fraction to percent; calculate percentage-point differences as 100 × (later − earlier). Use published `pop_in_poverty` counts; rounded rates cannot reconstruct exact counts.
+Time changes require one version and comparable definitions/survey spells. Revisions require the same geography, reference year, line and PPP basis across versions. A revision is not a change between publication dates.
+Verified 11 October 2026: Georgia 2020→2024, 11.98%→4.23% (−7.75 pp); global 2024 March→September release, 10.40%→10.12% (−0.28 pp), with counts 846,762,143→824,298,368. These are saved results; requery to refresh.
+March's API version is dated 20260324, though its public update was published 26 March. Global `actual` is a provider historical-estimate flag, not proof every component was observed that year.
+International extreme poverty is distinct from national poverty. These comparisons do not establish programme effects. Cite version, retrieval date and World Bank PIP; provider data use CC BY 4.0, not the skill's MIT licence.
+
 
 ## A real response, including its limits
 
