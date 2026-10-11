@@ -11,5 +11,6 @@ jobs:
         with:
           node-version: '22'
       - run: npm test
+      - run: python3 evals/2026-10-11/validate-fixtures.py
       - run: npm run build
       - run: python3 scripts/audit-release.py

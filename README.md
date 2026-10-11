@@ -2,7 +2,7 @@
 
 **18 free institutional data guides for Codex and Claude Code.**
 
-By [Ievgen Kylymnyk](https://github.com/klmnki) · One SKILL.md · MIT · Preview 0.3.1-rc.1
+By [Ievgen Kylymnyk](https://github.com/klmnki) · One SKILL.md · MIT · Preview 0.3.2-rc.1
 
 [**Download SKILL.md**](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) · [Read the file](SKILL.md) · [See the examples](https://public-kit.klmnki.chatgpt.site/#examples) · [Browse sources](https://public-kit.klmnki.chatgpt.site/#sources)
 
@@ -61,7 +61,7 @@ On **10 October 2026**, bounded anonymous requests to 13 services returned usabl
 
 On **11 October 2026**, the new ILOSTAT and PIP examples and the expanded Eurostat example returned observations. Their saved responses, source notes and tests are in the examples folders.
 
-These checks establish access for specific requests. We have not completed a controlled evaluation of the skill across Codex and Claude. Check the returned dates, coverage and source notes before using a result.
+A [15-run Codex comparison](docs/EVALUATION.md) tested three saved-data tasks without the skill, with the original file and with three revisions. Both baseline and skill versions got the main calculations right. The released file is 27% shorter and adds clearer evidence rules. This small test does not establish general accuracy or speed gains; Claude Code and live retrieval were not tested. Check dates, coverage and source notes before using a result.
 
 ## About the project
 

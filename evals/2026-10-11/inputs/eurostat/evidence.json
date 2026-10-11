@@ -1,0 +1,153 @@
+{
+  "snapshots": [
+    {
+      "provenance": {
+        "savedSource": "examples/eurostat/snapshots/eu-unemployment-2026-10-11T14-40-55-325Z.json",
+        "sha256": "510148792becc0cb98073e8d73f0b6b2ad7e323664d63b5c432c0063501fc25d",
+        "evidenceForm": "Saved normalized observation extract; original JSON-stat response body is unavailable, so this case cannot test raw JSON-stat indexing."
+      },
+      "identity": {
+        "source": "ESTAT",
+        "endpoint": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m",
+        "dataset": "une_rt_m",
+        "dimensions": {
+          "freq": "M",
+          "geo": "EU27_2020",
+          "sex": "T",
+          "age": "TOTAL",
+          "unit": "PC_ACT",
+          "s_adj": "SA"
+        },
+        "measure": "Monthly unemployment rate, seasonally adjusted, total age and sex, EU27_2020",
+        "unit": "Percentage of active population"
+      },
+      "source": {
+        "publisher": "Eurostat, European Commission",
+        "datasetCode": "une_rt_m",
+        "label": "Unemployment by sex and age - monthly data",
+        "updated": "2026-10-08T11:00:00+0200",
+        "dataBrowser": "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=en",
+        "documentation": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics"
+      },
+      "request": {
+        "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m?lang=en&freq=M&geo=EU27_2020&sex=T&age=TOTAL&unit=PC_ACT&s_adj=SA&sinceTimePeriod=2026-06&untilTimePeriod=2026-08",
+        "filters": {
+          "freq": "M",
+          "geo": "EU27_2020",
+          "sex": "T",
+          "age": "TOTAL",
+          "unit": "PC_ACT",
+          "s_adj": "SA"
+        },
+        "window": {
+          "kind": "fixed",
+          "from": "2026-06",
+          "to": "2026-08"
+        }
+      },
+      "retrievedAt": "2026-10-11T14:40:55.325Z",
+      "dimensionLabels": {
+        "freq": "Monthly",
+        "geo": "European Union - 27 countries (from 2020)",
+        "sex": "Total",
+        "age": "Total",
+        "unit": "Percentage of population in the labour force",
+        "s_adj": "Seasonally adjusted data, not calendar adjusted data"
+      },
+      "rows": [
+        {
+          "period": "2026-06",
+          "value": 6.1,
+          "status": null,
+          "presentInResponse": true
+        },
+        {
+          "period": "2026-07",
+          "value": 6.1,
+          "status": null,
+          "presentInResponse": true
+        },
+        {
+          "period": "2026-08",
+          "value": 6.1,
+          "status": null,
+          "presentInResponse": true
+        }
+      ]
+    },
+    {
+      "provenance": {
+        "savedSource": "examples/eurostat/snapshots/eu-unemployment-2026-10-11T14-41-27-831Z.json",
+        "sha256": "9f1cf64fb43ebe2aece1cb294213a15ffd5bde6e09926c243ce60cbfad702f1b",
+        "evidenceForm": "Saved normalized observation extract; original JSON-stat response body is unavailable, so this case cannot test raw JSON-stat indexing."
+      },
+      "identity": {
+        "source": "ESTAT",
+        "endpoint": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m",
+        "dataset": "une_rt_m",
+        "dimensions": {
+          "freq": "M",
+          "geo": "EU27_2020",
+          "sex": "T",
+          "age": "TOTAL",
+          "unit": "PC_ACT",
+          "s_adj": "SA"
+        },
+        "measure": "Monthly unemployment rate, seasonally adjusted, total age and sex, EU27_2020",
+        "unit": "Percentage of active population"
+      },
+      "source": {
+        "publisher": "Eurostat, European Commission",
+        "datasetCode": "une_rt_m",
+        "label": "Unemployment by sex and age - monthly data",
+        "updated": "2026-10-08T11:00:00+0200",
+        "dataBrowser": "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=en",
+        "documentation": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics"
+      },
+      "request": {
+        "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m?lang=en&freq=M&geo=EU27_2020&sex=T&age=TOTAL&unit=PC_ACT&s_adj=SA&lastTimePeriod=3",
+        "filters": {
+          "freq": "M",
+          "geo": "EU27_2020",
+          "sex": "T",
+          "age": "TOTAL",
+          "unit": "PC_ACT",
+          "s_adj": "SA"
+        },
+        "window": {
+          "kind": "latest",
+          "periods": 3
+        }
+      },
+      "retrievedAt": "2026-10-11T14:41:27.831Z",
+      "dimensionLabels": {
+        "freq": "Monthly",
+        "geo": "European Union - 27 countries (from 2020)",
+        "sex": "Total",
+        "age": "Total",
+        "unit": "Percentage of population in the labour force",
+        "s_adj": "Seasonally adjusted data, not calendar adjusted data"
+      },
+      "rows": [
+        {
+          "period": "2026-07",
+          "value": 6.1,
+          "status": null,
+          "presentInResponse": true
+        },
+        {
+          "period": "2026-08",
+          "value": 6.1,
+          "status": null,
+          "presentInResponse": true
+        },
+        {
+          "period": "2026-09",
+          "value": null,
+          "status": null,
+          "presentInResponse": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,500 @@
+{
+  "date": "2026-10-11",
+  "client": "Codex CLI 0.162.0-alpha.17.2",
+  "requested_model": "gpt-6.1-sol",
+  "reasoning": "medium",
+  "sampling": "One fresh process per case and condition; 15 answers. Revised runs reused cases and are regression checks, not unseen validation.",
+  "skill_delivery": "Exact skill text supplied inline separately from unchanged task/evidence. Automatic activation and installation were not tested.",
+  "isolation": {
+    "disabled_skill_count": 71,
+    "global_data_kit_mentions": 0,
+    "available_skills_mentions": 0,
+    "private_blog_mentions": 0
+  },
+  "grading": "Independent Codex subagent, masked labels, fixed rubric, exact answer excerpts. Model-assisted review, not an external human panel. Parent checked principal calculations.",
+  "conditions": {
+    "baseline": {
+      "scores": {
+        "ilostat": 16,
+        "pip": 16,
+        "eurostat": 15
+      },
+      "total_score": 47,
+      "max_score": 48,
+      "mean_input_tokens": 17070,
+      "mean_elapsed_seconds": 21.01,
+      "skill_sha256": null
+    },
+    "original": {
+      "scores": {
+        "ilostat": 16,
+        "pip": 16,
+        "eurostat": 16
+      },
+      "total_score": 48,
+      "max_score": 48,
+      "mean_input_tokens": 25068,
+      "mean_elapsed_seconds": 23.7,
+      "skill_sha256": "907f45add62d77fe46221132c0f9ba66763d4156b63ae042b6ab20d048b44850"
+    },
+    "revised": {
+      "scores": {
+        "ilostat": 16,
+        "pip": 16,
+        "eurostat": 15
+      },
+      "total_score": 47,
+      "max_score": 48,
+      "mean_input_tokens": 23329,
+      "mean_elapsed_seconds": 25.27,
+      "skill_sha256": "0a2d7faf407678299ad31332e1942aa0513b9fc5c137ff527c05e61d5f7ef2e2"
+    },
+    "final": {
+      "scores": {
+        "ilostat": 16,
+        "pip": 15,
+        "eurostat": 16
+      },
+      "total_score": 47,
+      "max_score": 48,
+      "mean_input_tokens": 23348,
+      "mean_elapsed_seconds": 23.16,
+      "skill_sha256": "0daf7d26950451b079d0e43e0b9eee3207c690c159d2d6a14f8afea239be5f14"
+    },
+    "release": {
+      "scores": {
+        "ilostat": 16,
+        "pip": 16,
+        "eurostat": 16
+      },
+      "total_score": 48,
+      "max_score": 48,
+      "mean_input_tokens": 23347,
+      "mean_elapsed_seconds": 24.28,
+      "skill_sha256": "cb732d70921dee5a7b482c1e3d85247539b2e400f12bd22ac5d1d6fb63c7976b"
+    }
+  },
+  "runs": [
+    {
+      "case": "ilostat",
+      "condition": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 21.54,
+      "usage": {
+        "input_tokens": 17074,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 695,
+        "reasoning_output_tokens": 56
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "dc9a25600e8dd5d70683d91868057639c951ed2e505e8587211258a2e62be39f",
+      "evidence_sha256": "56ab16c3732fe2cb46d692f140e0fbbf11b4c56d3037ab0fabab03bb8d626bd9",
+      "skill_sha256": null,
+      "prompt_sha256": "c77eabc90bce4bb4aee141e7e7a3f8bc96952d8fe1925f2193c2efc772b9f5d3",
+      "answer_present": true,
+      "answer": "results/baseline/ilostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "pip",
+      "condition": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 25.45,
+      "usage": {
+        "input_tokens": 17707,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 871,
+        "reasoning_output_tokens": 91
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "15860aa1b5ca199fb76a0f81916067fbf866410bfa08667b46e50ffc63cd3250",
+      "evidence_sha256": "d63d6da88d817c70abd6815addb651390722994788be0ec1cabe14736ea32a82",
+      "skill_sha256": null,
+      "prompt_sha256": "cd287036a811a4d7dc6ed8f8df9f9acb87eb88aacdc87c54ab11d22eb663d521",
+      "answer_present": true,
+      "answer": "results/baseline/pip.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "eurostat",
+      "condition": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 16.03,
+      "usage": {
+        "input_tokens": 16429,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 416,
+        "reasoning_output_tokens": 0
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "33058e415153f13acbb57000c2a73a3a72022c815545398916dabf6a071ea46f",
+      "evidence_sha256": "d30af81585215281448cb77519eb6f4120b8d6ce191179368767654f2dd029af",
+      "skill_sha256": null,
+      "prompt_sha256": "ba5aa6b8aa590e7fcfa8f32e6af155cde7162219dcfd2207bc58ddae7901d45c",
+      "answer_present": true,
+      "answer": "results/baseline/eurostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 15
+    },
+    {
+      "case": "ilostat",
+      "condition": "original",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 24.84,
+      "usage": {
+        "input_tokens": 25072,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 773,
+        "reasoning_output_tokens": 73
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "dc9a25600e8dd5d70683d91868057639c951ed2e505e8587211258a2e62be39f",
+      "evidence_sha256": "56ab16c3732fe2cb46d692f140e0fbbf11b4c56d3037ab0fabab03bb8d626bd9",
+      "skill_sha256": "907f45add62d77fe46221132c0f9ba66763d4156b63ae042b6ab20d048b44850",
+      "prompt_sha256": "4d6e5fe6fbe6965587cd3f435bd77f92bb572931c332b5f0678b031f3c0ff935",
+      "answer_present": true,
+      "answer": "results/original/ilostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "pip",
+      "condition": "original",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 26.37,
+      "usage": {
+        "input_tokens": 25705,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 868,
+        "reasoning_output_tokens": 84
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "15860aa1b5ca199fb76a0f81916067fbf866410bfa08667b46e50ffc63cd3250",
+      "evidence_sha256": "d63d6da88d817c70abd6815addb651390722994788be0ec1cabe14736ea32a82",
+      "skill_sha256": "907f45add62d77fe46221132c0f9ba66763d4156b63ae042b6ab20d048b44850",
+      "prompt_sha256": "75f3409834f92f935db627c10c69e406bd28ee6e26484cfaeb48128462ad8dae",
+      "answer_present": true,
+      "answer": "results/original/pip.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "eurostat",
+      "condition": "original",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 19.9,
+      "usage": {
+        "input_tokens": 24427,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 648,
+        "reasoning_output_tokens": 53
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "33058e415153f13acbb57000c2a73a3a72022c815545398916dabf6a071ea46f",
+      "evidence_sha256": "d30af81585215281448cb77519eb6f4120b8d6ce191179368767654f2dd029af",
+      "skill_sha256": "907f45add62d77fe46221132c0f9ba66763d4156b63ae042b6ab20d048b44850",
+      "prompt_sha256": "ea8f9c6d86e6f2e35fe044e5b2b91733b38e7c99910b0e0acd1f976da4415df4",
+      "answer_present": true,
+      "answer": "results/original/eurostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "ilostat",
+      "condition": "revised",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 26.37,
+      "usage": {
+        "input_tokens": 23333,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 826,
+        "reasoning_output_tokens": 91
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "dc9a25600e8dd5d70683d91868057639c951ed2e505e8587211258a2e62be39f",
+      "evidence_sha256": "56ab16c3732fe2cb46d692f140e0fbbf11b4c56d3037ab0fabab03bb8d626bd9",
+      "skill_sha256": "0a2d7faf407678299ad31332e1942aa0513b9fc5c137ff527c05e61d5f7ef2e2",
+      "prompt_sha256": "48c7e35cca1f4861ded3e1372ddbe155e164dc8f0189e73964ba8751e9b4813c",
+      "answer_present": true,
+      "answer": "results/revised/ilostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "pip",
+      "condition": "revised",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 28.78,
+      "usage": {
+        "input_tokens": 23966,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1013,
+        "reasoning_output_tokens": 110
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "15860aa1b5ca199fb76a0f81916067fbf866410bfa08667b46e50ffc63cd3250",
+      "evidence_sha256": "d63d6da88d817c70abd6815addb651390722994788be0ec1cabe14736ea32a82",
+      "skill_sha256": "0a2d7faf407678299ad31332e1942aa0513b9fc5c137ff527c05e61d5f7ef2e2",
+      "prompt_sha256": "edeef05518a1f4050d55893a3027bc6350d3e82efe2ecf2b27ab03135b01ba5d",
+      "answer_present": true,
+      "answer": "results/revised/pip.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "eurostat",
+      "condition": "revised",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 20.66,
+      "usage": {
+        "input_tokens": 22688,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 658,
+        "reasoning_output_tokens": 82
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "33058e415153f13acbb57000c2a73a3a72022c815545398916dabf6a071ea46f",
+      "evidence_sha256": "d30af81585215281448cb77519eb6f4120b8d6ce191179368767654f2dd029af",
+      "skill_sha256": "0a2d7faf407678299ad31332e1942aa0513b9fc5c137ff527c05e61d5f7ef2e2",
+      "prompt_sha256": "32b4e8817ba62f9745fb1caaa355b3ebaabe1b5566a24956568c435b393f3f60",
+      "answer_present": true,
+      "answer": "results/revised/eurostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 15
+    },
+    {
+      "case": "ilostat",
+      "condition": "final",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 25.31,
+      "usage": {
+        "input_tokens": 23352,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 833,
+        "reasoning_output_tokens": 89
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "dc9a25600e8dd5d70683d91868057639c951ed2e505e8587211258a2e62be39f",
+      "evidence_sha256": "56ab16c3732fe2cb46d692f140e0fbbf11b4c56d3037ab0fabab03bb8d626bd9",
+      "skill_sha256": "0daf7d26950451b079d0e43e0b9eee3207c690c159d2d6a14f8afea239be5f14",
+      "prompt_sha256": "639a0e577a15ce56f28232d1d7d3f258c30f30f358ff0852a2d3597f8e383e35",
+      "answer_present": true,
+      "answer": "results/final/ilostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "pip",
+      "condition": "final",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 27.04,
+      "usage": {
+        "input_tokens": 23985,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 918,
+        "reasoning_output_tokens": 71
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "15860aa1b5ca199fb76a0f81916067fbf866410bfa08667b46e50ffc63cd3250",
+      "evidence_sha256": "d63d6da88d817c70abd6815addb651390722994788be0ec1cabe14736ea32a82",
+      "skill_sha256": "0daf7d26950451b079d0e43e0b9eee3207c690c159d2d6a14f8afea239be5f14",
+      "prompt_sha256": "94c6f2c58a44258fcb2f8aba22fd9faede27f03c66417ac9952915533f7e0261",
+      "answer_present": true,
+      "answer": "results/final/pip.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 15
+    },
+    {
+      "case": "eurostat",
+      "condition": "final",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 17.14,
+      "usage": {
+        "input_tokens": 22707,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 544,
+        "reasoning_output_tokens": 0
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "33058e415153f13acbb57000c2a73a3a72022c815545398916dabf6a071ea46f",
+      "evidence_sha256": "d30af81585215281448cb77519eb6f4120b8d6ce191179368767654f2dd029af",
+      "skill_sha256": "0daf7d26950451b079d0e43e0b9eee3207c690c159d2d6a14f8afea239be5f14",
+      "prompt_sha256": "4b12c00c2206b5adf2950bcb688ccecc503c606d9ab20c07d4f76f369e5ff28c",
+      "answer_present": true,
+      "answer": "results/final/eurostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "ilostat",
+      "condition": "release",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 25.6,
+      "usage": {
+        "input_tokens": 23351,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 816,
+        "reasoning_output_tokens": 75
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "dc9a25600e8dd5d70683d91868057639c951ed2e505e8587211258a2e62be39f",
+      "evidence_sha256": "56ab16c3732fe2cb46d692f140e0fbbf11b4c56d3037ab0fabab03bb8d626bd9",
+      "skill_sha256": "cb732d70921dee5a7b482c1e3d85247539b2e400f12bd22ac5d1d6fb63c7976b",
+      "prompt_sha256": "0ef64a02e414ad4ec5bf040e6fb668135238c36056a5d1a26ecf582648e6bacb",
+      "answer_present": true,
+      "answer": "results/release/ilostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "pip",
+      "condition": "release",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 27.32,
+      "usage": {
+        "input_tokens": 23984,
+        "cached_input_tokens": 12800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 950,
+        "reasoning_output_tokens": 88
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "15860aa1b5ca199fb76a0f81916067fbf866410bfa08667b46e50ffc63cd3250",
+      "evidence_sha256": "d63d6da88d817c70abd6815addb651390722994788be0ec1cabe14736ea32a82",
+      "skill_sha256": "cb732d70921dee5a7b482c1e3d85247539b2e400f12bd22ac5d1d6fb63c7976b",
+      "prompt_sha256": "b60844a282d8b25f88598092257287eef8a1dce45ef7c6ab57015bc564ed2a58",
+      "answer_present": true,
+      "answer": "results/release/pip.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    },
+    {
+      "case": "eurostat",
+      "condition": "release",
+      "requested_model": "gpt-6.1-sol",
+      "reasoning": "medium",
+      "exit_code": 0,
+      "elapsed_seconds": 19.91,
+      "usage": {
+        "input_tokens": 22706,
+        "cached_input_tokens": 7168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 610,
+        "reasoning_output_tokens": 81
+      },
+      "tools_used": [],
+      "errors": [],
+      "task_sha256": "33058e415153f13acbb57000c2a73a3a72022c815545398916dabf6a071ea46f",
+      "evidence_sha256": "d30af81585215281448cb77519eb6f4120b8d6ce191179368767654f2dd029af",
+      "skill_sha256": "cb732d70921dee5a7b482c1e3d85247539b2e400f12bd22ac5d1d6fb63c7976b",
+      "prompt_sha256": "0a63de2363124e9571cb89a965b62cdf072f0634447751268eb94704e42dac6f",
+      "answer_present": true,
+      "answer": "results/release/eurostat.md",
+      "runtime_warnings": [
+        "CLI warned that skip_host_skill_discovery is experimental; all discovered skills were disabled per process and a separate dry-run verified their absence."
+      ],
+      "score": 16
+    }
+  ],
+  "limits": [
+    "Saved-evidence interpretation only; no live retrieval or source-selection comparison.",
+    "Three related cases, one model alias, one run per condition; no significance or speed claim.",
+    "Claude Code unavailable; no Claude evaluation.",
+    "PIP reuses endpoint years from the existing worked example.",
+    "ILOSTAT retains selected raw fields, not the original bulk body; Eurostat retains normalized observations, not original JSON-stat.",
+    "One-point reporting differences do not establish general superiority."
+  ],
+  "revision": {
+    "original_words": 4684,
+    "release_words": 3422,
+    "word_reduction_percent": 26.94,
+    "original_added_input_tokens": 7998,
+    "release_added_input_tokens": 6277,
+    "added_input_reduction_percent": 21.52
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "global-data-kit",
-  "version": "0.3.1-rc.1",
+  "version": "0.3.2-rc.1",
   "private": true,
   "type": "module",
   "description": "18 free institutional data guides for Codex and Claude, with reproducible analysis examples.",

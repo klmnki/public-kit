@@ -1,0 +1,579 @@
+{
+  "schemaVersion": 1,
+  "method": {
+    "blinding": "Reviewed only the six anonymized answer files, oracle.json, and the three supplied prompt/evidence pairs. Arm identities and generation records were not consulted.",
+    "rubric": "0 absent or incorrect; 1 partial; 2 complete. Grade substantive content rather than exact wording. Prohibitions are satisfied when the answer makes no prohibited claim; explicit caution is credited when the assertion requires it.",
+    "maxPerCase": 16,
+    "maxPerArm": 48,
+    "scope": "Evidence-bounded evaluation of these saved answers; no live data retrieval or claim about broader performance."
+  },
+  "cases": {
+    "ilostat": {
+      "original": {
+        "answerFile": "results/original/ilostat.md",
+        "assertions": [
+          {
+            "id": "I1",
+            "score": 2,
+            "excerpts": [
+              "SDG indicator 8.6.1 measures the percentage of **all young people aged 15–24 who are outside employment, education and training**, with both sexes combined here.",
+              "It includes people outside the labour force."
+            ],
+            "rationale": "Correct NEET indicator, age/sex coverage, and total-youth denominator; does not use the labour-force denominator."
+          },
+          {
+            "id": "I2",
+            "score": 2,
+            "excerpts": [
+              "| Moldova | 14.963% | 13.308% | 11.491% | −3.472 pp |",
+              "| Georgia | 20.166% | 18.049% | 14.692% | −5.474 pp |",
+              "| Serbia | 13.231% | 12.397% | 12.598% | −0.633 pp |"
+            ],
+            "rationale": "All six requested endpoint rates exactly match the evidence."
+          },
+          {
+            "id": "I3",
+            "score": 2,
+            "excerpts": [
+              "**Georgia had the largest fall in the youth NEET rate between 2022 and 2024: 5.474 percentage points.",
+              "| Moldova | 14.963% | 13.308% | 11.491% | −3.472 pp |",
+              "| Georgia | 20.166% | 18.049% | 14.692% | −5.474 pp |",
+              "| Serbia | 13.231% | 12.397% | 12.598% | −0.633 pp |"
+            ],
+            "rationale": "All three differences and largest-fall conclusion are correct; percentage-point units are clear."
+          },
+          {
+            "id": "I4",
+            "score": 2,
+            "excerpts": [
+              "Serbia did not improve between 2023 and 2024:** its rate rose by 0.201 percentage points",
+              "| Serbia | 13.231% | 12.397% | 12.598% | −0.633 pp |"
+            ],
+            "rationale": "Both annual endpoints and increase are correct; the interpretation directly answers the question."
+          },
+          {
+            "id": "I5",
+            "score": 2,
+            "excerpts": [
+              "not a claim that youth unemployment fell",
+              "They also do not establish a regional rate: national percentages cannot be summed, and a pooled rate would require compatible youth population denominators and defined regional coverage."
+            ],
+            "rationale": "Explicitly rejects both misleading interpretations."
+          },
+          {
+            "id": "I6",
+            "score": 2,
+            "excerpts": [
+              "All are labelled **Labour Force Survey**, rather than ILO modelled estimates.",
+              "Every row retains note `R1:3513`, meaning **ILO-STATISTICS microdata processing**",
+              "The figures do not explain causes"
+            ],
+            "rationale": "Identifies country LFS observations and ILO processing, explicitly distinguishes modelled estimates, and avoids causal claims."
+          },
+          {
+            "id": "I7",
+            "score": 2,
+            "excerpts": [
+              "[ILOSTAT, International Labour Organization](https://ilostat.ilo.org/data/bulk/), retrieved **11 October 2026 at 14:46:53.313 UTC**",
+              "https://rplumber.ilo.org/data/indicator?id=SDG_0861_SEX_RT_A&format=.csv.gz",
+              "Filter `indicator=SDG_0861_SEX_RT`, `sex=SEX_T`, `ref_area` to `MDA`, `GEO`, `SRB`, and `time` to `2022`, `2023`, `2024`.",
+              "Those blanks do not establish statistical significance or rule out methodological breaks.",
+              "may differ from national publications or the Global SDG Database"
+            ],
+            "rationale": "Source, retrieval, annual request, all selection filters, blank-flag limitation, and national-publication distinction are supplied."
+          },
+          {
+            "id": "I8",
+            "score": 2,
+            "excerpts": [
+              "may be revised",
+              "This briefing uses the supplied retained fields and metadata; the full original bulk CSV is not retained in the evidence pack."
+            ],
+            "rationale": "Discloses extract boundary and revisions without claiming new retrieval or full-body verification."
+          }
+        ],
+        "total": 16,
+        "maxScore": 16,
+        "criticalErrors": [],
+        "unsupportedStatements": [],
+        "contradictions": [],
+        "servesBrief": true,
+        "briefAssessment": "Directly answers the largest-fall and Serbia-year questions, with correct rates, indicator interpretation, source selection, and limitations."
+      },
+      "baseline": {
+        "answerFile": "results/baseline/ilostat.md",
+        "assertions": [
+          {
+            "id": "I1",
+            "score": 2,
+            "excerpts": [
+              "The indicator is **SDG 8.6.1**, the proportion of people aged **15–24 who are not in education, employment or training (NEET)**, with both sexes combined.",
+              "Its denominator is the total youth population."
+            ],
+            "rationale": "Correct indicator, age, sex, and denominator."
+          },
+          {
+            "id": "I2",
+            "score": 2,
+            "excerpts": [
+              "| Moldova | 14.963% | 13.308% | 11.491% | −3.472 pp |",
+              "| Georgia | 20.166% | 18.049% | 14.692% | −5.474 pp |",
+              "| Serbia | 13.231% | 12.397% | 12.598% | −0.633 pp |"
+            ],
+            "rationale": "All requested endpoint rates exactly match."
+          },
+          {
+            "id": "I3",
+            "score": 2,
+            "excerpts": [
+              "Georgia recorded the largest fall in the youth NEET rate between 2022 and 2024: **5.474 percentage points**.",
+              "| Moldova | 14.963% | 13.308% | 11.491% | −3.472 pp |",
+              "| Georgia | 20.166% | 18.049% | 14.692% | −5.474 pp |",
+              "| Serbia | 13.231% | 12.397% | 12.598% | −0.633 pp |",
+              "“pp” means percentage points."
+            ],
+            "rationale": "All differences, units, and largest-fall conclusion are correct."
+          },
+          {
+            "id": "I4",
+            "score": 2,
+            "excerpts": [
+              "**did not improve between 2023 and 2024**: its rate rose by 0.201 percentage points.",
+              "| Serbia | 13.231% | 12.397% | 12.598% | −0.633 pp |"
+            ],
+            "rationale": "Both annual endpoints, direction, and difference are correct."
+          },
+          {
+            "id": "I5",
+            "score": 2,
+            "excerpts": [
+              "**do not establish a change in youth unemployment**",
+              "**do not provide a regional rate**: these are three country observations, and the extract supplies neither regional coverage nor population weights."
+            ],
+            "rationale": "Explicitly avoids conflating NEET with unemployment or inventing a regional rate."
+          },
+          {
+            "id": "I6",
+            "score": 2,
+            "excerpts": [
+              "Match source codes `BA:571` (Moldova), `BA:13950` (Georgia), and `BA:467` (Serbia), all labelled Labour Force Survey.",
+              "All rows carry the ILO microdata-processing note `R1:3513`"
+            ],
+            "rationale": "Country LFS source identities and ILO processing are preserved. Although it does not literally say 'not modelled', it identifies these as survey observations and does not label them modelled or attribute causes; no wording-only penalty."
+          },
+          {
+            "id": "I7",
+            "score": 2,
+            "excerpts": [
+              "ILOSTAT, International Labour Organization; retrieved **11 October 2026 at 14:46:53.313 UTC**",
+              "https://rplumber.ilo.org/data/indicator?id=SDG_0861_SEX_RT_A&format=.csv.gz",
+              "selecting indicator `SDG_0861_SEX_RT`, countries `MDA`, `GEO`, `SRB`, years `2022`, `2023`, `2024`, and sex `SEX_T`",
+              "blank status fields do not establish that methodological issues are absent",
+              "figures may differ from national reporting and the Global SDG database because of sources or reference years"
+            ],
+            "rationale": "Provides reproducible selection and directly relevant uncertainty/national-equivalence cautions."
+          },
+          {
+            "id": "I8",
+            "score": 2,
+            "excerpts": [
+              "The evidence retains exact selected values and metadata, but not the full original bulk CSV; a later download may contain revisions."
+            ],
+            "rationale": "Explicit saved-evidence and future-revision boundary; no live verification claim."
+          }
+        ],
+        "total": 16,
+        "maxScore": 16,
+        "criticalErrors": [],
+        "unsupportedStatements": [],
+        "contradictions": [],
+        "servesBrief": true,
+        "briefAssessment": "Directly answers the largest-fall and Serbia-year questions, with correct rates, indicator interpretation, source selection, and limitations."
+      }
+    },
+    "pip": {
+      "original": {
+        "answerFile": "results/original/pip.md",
+        "assertions": [
+          {
+            "id": "P1",
+            "score": 2,
+            "excerpts": [
+              "| Georgia, **2020 → 2024**, September release | 11.98% | 4.23% | −7.75 percentage points |",
+              "Rates equal `100 × headcount`"
+            ],
+            "rationale": "Correct fraction conversion, endpoints, and percentage-point change."
+          },
+          {
+            "id": "P2",
+            "score": 2,
+            "excerpts": [
+              "Separately, within the September release, Georgia’s poverty rate fell by **7.75 percentage points between 2020 and 2024**.",
+              "Georgia’s comparison uses national consumption surveys for 2020 and 2024 within version `20260922_2021_01_02_PROD`."
+            ],
+            "rationale": "Correctly compares different years inside one specified version."
+          },
+          {
+            "id": "P3",
+            "score": 2,
+            "excerpts": [
+              "| World, **2024**, March → September release | 10.40%; 846,762,143 people | 10.12%; 824,298,368 people | −0.28 percentage points; −22,463,775 people |",
+              "Counts use published `pop_in_poverty`, rather than reconstruction from rounded rates."
+            ],
+            "rationale": "Rates, exact published counts, and both differences are correct."
+          },
+          {
+            "id": "P4",
+            "score": 2,
+            "excerpts": [
+              "It measures a **release revision**, not people leaving poverty between March and September 2026."
+            ],
+            "rationale": "Explicitly rejects the colleague's temporal interpretation of the same-year revision."
+          },
+          {
+            "id": "P5",
+            "score": 2,
+            "excerpts": [
+              "**$3 per person per day in 2021 purchasing power parity (PPP)**",
+              "versions `20260324_2021_01_02_PROD` and `20260922_2021_01_02_PROD`"
+            ],
+            "rationale": "Threshold, per-person/day unit, PPP basis, and exact release versions are complete."
+          },
+          {
+            "id": "P6",
+            "score": 2,
+            "excerpts": [
+              "Georgia’s comparison uses national consumption surveys for 2020 and 2024",
+              "the same comparable spell, `1998 - 2024`",
+              "Both world records carry `estimate_type=\"actual\"`; that provider flag does not establish that every component was directly observed in 2024."
+            ],
+            "rationale": "Correct survey-year/coverage/comparable-spell description and explicit limit on interpreting global reporting year as universal survey observation."
+          },
+          {
+            "id": "P7",
+            "score": 2,
+            "excerpts": [
+              "[World Bank PIP](https://pip.worldbank.org/), supplied saved responses retrieved **11 October 2026, approximately 14:41 UTC**",
+              "https://api.worldbank.org/pip/v1/pip?country=GEO&year=2020%2C2024&povline=3&version=20260922_2021_01_02_PROD&fill_gaps=false&reporting_level=national&welfare_type=consumption&format=json",
+              "https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260324_2021_01_02_PROD&group_by=world&format=json",
+              "https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260922_2021_01_02_PROD&group_by=world&format=json"
+            ],
+            "rationale": "Source/retrieval and separate pinned country/aggregate requests are complete."
+          },
+          {
+            "id": "P8",
+            "score": 2,
+            "excerpts": [
+              "These are two survey endpoints, with gap filling disabled. Neither comparison establishes programme effects.",
+              "| Georgia, **2020 → 2024**, September release | 11.98% | 4.23% | −7.75 percentage points |"
+            ],
+            "rationale": "No invented Georgia people counts, causes, or intervening annual trajectory; explicit endpoint and causality limits."
+          }
+        ],
+        "total": 16,
+        "maxScore": 16,
+        "criticalErrors": [],
+        "unsupportedStatements": [],
+        "contradictions": [],
+        "servesBrief": true,
+        "briefAssessment": "Directly corrects the colleague's revision-versus-time error and supplies accurate rates, counts, versions, coverage, and reproducible requests."
+      },
+      "baseline": {
+        "answerFile": "results/baseline/pip.md",
+        "assertions": [
+          {
+            "id": "P1",
+            "score": 2,
+            "excerpts": [
+              "| Georgia, **2020 vs 2024**, within the September 2026 release | 11.98% | 4.23% | −7.75 percentage points |"
+            ],
+            "rationale": "Correct converted endpoint rates and percentage-point decline."
+          },
+          {
+            "id": "P2",
+            "score": 2,
+            "excerpts": [
+              "Georgia’s comparison measures change between two survey years within version `20260922_2021_01_02_PROD`."
+            ],
+            "rationale": "Same-version temporal comparison is explicit."
+          },
+          {
+            "id": "P3",
+            "score": 2,
+            "excerpts": [
+              "| World, **2024**, March vs September 2026 releases | 10.40%; 846,762,143 people | 10.12%; 824,298,368 people | −0.28 percentage points; −22,463,775 people (about 22.5 million) |",
+              "The count difference uses the returned `pop_in_poverty` values"
+            ],
+            "rationale": "All rates/counts and differences are exact."
+          },
+          {
+            "id": "P4",
+            "score": 2,
+            "excerpts": [
+              "The sentence conflates a **revision to the estimate for 2024** with a change over time.",
+              "It does **not** establish a poverty decline between March and September 2026."
+            ],
+            "rationale": "Explicitly rejects temporal interpretation and correctly describes the revision."
+          },
+          {
+            "id": "P5",
+            "score": 2,
+            "excerpts": [
+              "**$3 per person per day threshold on a 2021 purchasing power parity (PPP) basis**",
+              "release versions `20260324_2021_01_02_PROD` and `20260922_2021_01_02_PROD`"
+            ],
+            "rationale": "Exact threshold/PPP and versions supplied."
+          },
+          {
+            "id": "P6",
+            "score": 2,
+            "excerpts": [
+              "Both observations are national HIS consumption surveys, based on microdata, marked non-interpolated and within the reported comparable spell **1998–2024**.",
+              "The world responses cover the `WLD` aggregate with `country=all` and are labelled `estimate_type=actual`; they do not supply country-level survey coverage details.",
+              "Georgia’s comparison measures change between two survey years"
+            ],
+            "rationale": "Distinguishes the national survey endpoints from the World aggregate and does not treat the global reporting year as one survey year."
+          },
+          {
+            "id": "P7",
+            "score": 2,
+            "excerpts": [
+              "[World Bank Poverty and Inequality Platform](https://pip.worldbank.org/), supplied parsed responses retrieved **11 October 2026, 14:41 UTC**",
+              "https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260324_2021_01_02_PROD&group_by=world&format=json",
+              "https://api.worldbank.org/pip/v1/pip-grp?country=all&year=2024&povline=3&version=20260922_2021_01_02_PROD&group_by=world&format=json",
+              "https://api.worldbank.org/pip/v1/pip?country=GEO&year=2020%2C2024&povline=3&version=20260922_2021_01_02_PROD&fill_gaps=false&reporting_level=national&welfare_type=consumption&format=json"
+            ],
+            "rationale": "Source/retrieval and separate pinned requests are complete."
+          },
+          {
+            "id": "P8",
+            "score": 2,
+            "excerpts": [
+              "Georgia’s comparison measures change between two survey years",
+              "| Georgia, **2020 vs 2024**, within the September 2026 release | 11.98% | 4.23% | −7.75 percentage points |"
+            ],
+            "rationale": "Reports only Georgia rates and endpoint difference, with no fabricated count, cause, or intervening trajectory."
+          }
+        ],
+        "total": 16,
+        "maxScore": 16,
+        "criticalErrors": [],
+        "unsupportedStatements": [],
+        "contradictions": [],
+        "servesBrief": true,
+        "briefAssessment": "Directly corrects the colleague's revision-versus-time error and supplies accurate rates, counts, versions, coverage, and reproducible requests."
+      }
+    },
+    "eurostat": {
+      "original": {
+        "answerFile": "results/original/eurostat.md",
+        "assertions": [
+          {
+            "id": "E1",
+            "score": 2,
+            "excerpts": [
+              "**6.1% for August 2026**",
+              "September is a returned period with a missing value, not zero"
+            ],
+            "rationale": "Correct latest non-missing month/rate and explicit null-versus-zero distinction."
+          },
+          {
+            "id": "E2",
+            "score": 2,
+            "excerpts": [
+              "unchanged from July: **0.0 percentage points** at the published precision.",
+              "| July | 6.1% | 6.1% |"
+            ],
+            "rationale": "Correct prior month and displayed change; expressly limits equality to published precision, with no count or unrounded-estimate claim."
+          },
+          {
+            "id": "E3",
+            "score": 2,
+            "excerpts": [
+              "**EU aggregate of 27 countries (`EU27_2020`), total age and sex**, monthly unemployment as a **percentage of the labour force**, seasonally adjusted and **not calendar adjusted**"
+            ],
+            "rationale": "All required series dimensions and denominator are correct."
+          },
+          {
+            "id": "E4",
+            "score": 2,
+            "excerpts": [
+              "**no revision or withdrawal for the overlapping months**, July and August. Their values and null status flags are unchanged.",
+              "June falls outside that rolling window, so its absence does not indicate withdrawal or establish whether it was revised."
+            ],
+            "rationale": "Explicitly compares both values and flags and bounds the conclusion to the overlap."
+          },
+          {
+            "id": "E5",
+            "score": 2,
+            "excerpts": [
+              "June falls outside that rolling window, so its absence does not indicate withdrawal or establish whether it was revised."
+            ],
+            "rationale": "Correctly explains query-window exclusion rather than withdrawal or missing value."
+          },
+          {
+            "id": "E6",
+            "score": 2,
+            "excerpts": [
+              "source update of **8 October 2026, 11:00 +02:00**",
+              "retrieved **11 October 2026 at 14:40:55.325 UTC**",
+              "retrieved **11 October 2026 at 14:41:27.831 UTC**",
+              "**6.1% for August 2026**"
+            ],
+            "rationale": "Clearly separates update timestamp, both retrieval timestamps, and observation month."
+          },
+          {
+            "id": "E7",
+            "score": 2,
+            "excerpts": [
+              "dataset [`une_rt_m`](https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=en)",
+              "`lang=en`, `freq=M`, `geo=EU27_2020`, `sex=T`, `age=TOTAL`, `unit=PC_ACT`, `s_adj=SA`",
+              "sinceTimePeriod=2026-06&untilTimePeriod=2026-08",
+              "`lastTimePeriod=3`"
+            ],
+            "rationale": "Source, dataset, dimensions, and both request windows are reproducible."
+          },
+          {
+            "id": "E8",
+            "score": 2,
+            "excerpts": [
+              "These saved extracts establish the comparison above, not current values or why September is missing. The original JSON-stat responses are unavailable, so raw indexing cannot be verified."
+            ],
+            "rationale": "Discloses saved-extract/raw-body boundary; no imputation, fabricated revision, or live-check claim. 'Normalized' need not be repeated verbatim."
+          }
+        ],
+        "total": 16,
+        "maxScore": 16,
+        "criticalErrors": [],
+        "unsupportedStatements": [],
+        "contradictions": [],
+        "servesBrief": true,
+        "briefAssessment": "Directly answers latest rate, prior month, overlap revision, September null, and June-window questions, with coverage and provenance."
+      },
+      "baseline": {
+        "answerFile": "results/baseline/eurostat.md",
+        "assertions": [
+          {
+            "id": "E1",
+            "score": 2,
+            "excerpts": [
+              "**in the supplied snapshots is 6.1% for August 2026**",
+              "September is present but has a null value and no status flag, so it supplies no usable rate or explanation for its absence."
+            ],
+            "rationale": "Correct latest available month/rate and null interpretation; does not use zero."
+          },
+          {
+            "id": "E2",
+            "score": 2,
+            "excerpts": [
+              "unchanged from July’s 6.1% (a change of **0.0 percentage points**).",
+              "They establish the displayed values"
+            ],
+            "rationale": "Correct prior-month value and displayed difference; does not infer constant counts or unrounded estimates. The concluding displayed-values boundary is directly relevant."
+          },
+          {
+            "id": "E3",
+            "score": 2,
+            "excerpts": [
+              "**EU27_2020**, total sex and age, monthly unemployment as a percentage of the active population (`PC_ACT`). It is **seasonally adjusted, not calendar adjusted** (`SA`)."
+            ],
+            "rationale": "Correct dimensions and supplied active-population unit, equivalent here to labour force."
+          },
+          {
+            "id": "E4",
+            "score": 1,
+            "excerpts": [
+              "**no evidence of a revision or withdrawal**: July and August remain at 6.1%.",
+              "cannot explain September’s null, establish wider revision history"
+            ],
+            "rationale": "Correctly reports unchanged overlapping values and limits wider-history inference, but does not report whether the July/August status flags were compared or unchanged. The September flag statement is not an overlap-flag comparison."
+          },
+          {
+            "id": "E5",
+            "score": 2,
+            "excerpts": [
+              "June’s omission reflects the different request window: the later extract contains July–September, whereas the earlier request explicitly covered June–August. It does not establish that June was withdrawn."
+            ],
+            "rationale": "Correct window explanation and withdrawal limitation."
+          },
+          {
+            "id": "E6",
+            "score": 2,
+            "excerpts": [
+              "source update of **8 October 2026, 11:00 +0200**",
+              "| 11 October 2026, 14:40:55.325 | `sinceTimePeriod=2026-06&untilTimePeriod=2026-08` |",
+              "| 11 October 2026, 14:41:27.831 | `lastTimePeriod=3`, yielding July–September |",
+              "**in the supplied snapshots is 6.1% for August 2026**"
+            ],
+            "rationale": "Update, retrievals, and observation month are clearly distinct."
+          },
+          {
+            "id": "E7",
+            "score": 2,
+            "excerpts": [
+              "dataset `une_rt_m`",
+              "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/une_rt_m",
+              "`sinceTimePeriod=2026-06&untilTimePeriod=2026-08`",
+              "`lastTimePeriod=3`",
+              "`lang=en&freq=M&geo=EU27_2020&sex=T&age=TOTAL&unit=PC_ACT&s_adj=SA`"
+            ],
+            "rationale": "Dataset/source, both windows, and complete filters are present."
+          },
+          {
+            "id": "E8",
+            "score": 2,
+            "excerpts": [
+              "These are saved normalized extracts.",
+              "cannot explain September’s null, establish wider revision history, or verify raw JSON-stat indexing because the original response bodies are unavailable."
+            ],
+            "rationale": "Explicit saved normalized extract/original-body boundary, with no fabricated revision, imputation, or live-check claim."
+          }
+        ],
+        "total": 15,
+        "maxScore": 16,
+        "criticalErrors": [],
+        "unsupportedStatements": [],
+        "contradictions": [],
+        "servesBrief": true,
+        "briefAssessment": "Directly answers latest rate, prior month, overlap revision, September null, and June-window questions, with coverage and provenance."
+      }
+    }
+  },
+  "summary": {
+    "totals": {
+      "alpha": 48,
+      "beta": 47,
+      "maxPerArm": 48
+    },
+    "caseTotals": {
+      "ilostat": {
+        "alpha": 16,
+        "beta": 16
+      },
+      "pip": {
+        "alpha": 16,
+        "beta": 16
+      },
+      "eurostat": {
+        "alpha": 16,
+        "beta": 15
+      }
+    },
+    "actualDifferences": [
+      {
+        "case": "eurostat",
+        "assertion": "E4",
+        "alpha": 2,
+        "beta": 1,
+        "difference": "Alpha explicitly states that July/August values and null status flags are unchanged. Beta confirms unchanged values and bounds revision history, but does not report the overlap status-flag comparison."
+      }
+    ],
+    "substantiveEquivalences": "Both arms get every numerical result and all five critical-error traps right. Both serve each brief. Alpha is more explicit about non-modelled ILO observations and precision/global-component caveats; beta provides extra PIP provenance and survey labels. These differences do not change other assertion scores.",
+    "unsupportedOrContradictoryClaims": "None identified against the supplied evidence.",
+    "interpretation": "The one-point difference concerns completeness of reported flag verification, not an observed numerical or interpretive error. This small three-case comparison does not establish a general performance advantage."
+  },
+  "revealedMapping": {
+    "alpha": "original",
+    "beta": "baseline"
+  }
+}

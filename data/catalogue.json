@@ -29,7 +29,7 @@
       "discovery": "Search with query or bbox=minx,miny,maxx,maxy; page with offset. Open the selected dataset metadata before choosing a layer.",
       "parse": "Read GeoJSON features, properties, links and pages. Identify the dataset, bounds, dates, units and asset format. Follow the selected public asset only when it fits the question.",
       "limitation": "This request finds metadata. A search match does not establish that a suitable measurement exists. Some assets require separate access or geospatial tools. Log stable dataset links, not signed asset URLs.",
-      "verification": "Sample returned data on 10 October 2026"
+      "verification": "Metadata retrieved on 10 October 2026; numerical values or raster assets were not retrieved in this check."
     },
     {
       "id": "unsd-sdg",
@@ -99,7 +99,7 @@
       "discovery": "Search catalogue metadata; paginate with start and rows. Inspect the selected package and its resources. Choose a file whose geography, update date and methodology fit the question.",
       "parse": "Require success=true, then read result.count and result.results. Catalogue results describe datasets; retrieve the chosen resource in its actual format to answer a numerical question.",
       "limitation": "OCHA hosts data from multiple organisations. Check the publisher and licence of each resource; public catalogue access does not establish unrestricted access to every file.",
-      "verification": "Sample returned data on 10 October 2026"
+      "verification": "Metadata retrieved on 10 October 2026; numerical values or raster assets were not retrieved in this check."
     },
     {
       "id": "eurostat",
@@ -169,7 +169,7 @@
       "discovery": "Inspect /mapsets/L1-AETI-A for annual actual evapotranspiration/interception, then /mapsets/L1-AETI-A/rasters?offset=0&limit=1. Include both offset and limit. Version 3 public access does not need the tokens used in older version-2 instructions.",
       "parse": "Read response.items for listings and response for a product. Retain measureUnit, scale, offset, dates, CRS, resolution, nodata and bounds. The checked product used mm/year and scale 0.1. Retrieve a suitable spatial subset only when the task needs raster values.",
       "limitation": "Metadata retrieval does not calculate a water balance. Avoid downloading a global raster to answer a small-area question. Apply nodata and scale before calculation.",
-      "verification": "Sample returned data on 10 October 2026"
+      "verification": "Metadata retrieved on 10 October 2026; numerical values or raster assets were not retrieved in this check."
     },
     {
       "id": "who",

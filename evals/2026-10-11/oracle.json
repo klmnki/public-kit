@@ -1,0 +1,133 @@
+{
+  "scoring": {
+    "perAssertion": "0 = absent/incorrect, 1 = partial, 2 = complete; grade content, not verbatim phrasing",
+    "maxPerCase": 16,
+    "maxPerArm": 48,
+    "numericalTolerance": 0.011,
+    "criticalErrors": [
+      "NEET called unemployment",
+      "fraction interpreted directly as percent",
+      "same-year revision called temporal decline",
+      "missing value treated as zero",
+      "query-window exclusion called withdrawal"
+    ],
+    "rules": "Record a quote from each answer for every awarded point; unsupported implication counts against the relevant assertion. A stated limitation may satisfy multiple assertions only where directly relevant."
+  },
+  "cases": {
+    "ilostat": [
+      {
+        "id": "I1",
+        "assertion": "Identifies ILOSTAT SDG 8.6.1 NEET, ages 15-24, both sexes; denominator is total youth population, not labour force."
+      },
+      {
+        "id": "I2",
+        "assertion": "Reports 2022/2024 rates MDA 14.963/11.491, GEO 20.166/14.692, SRB 13.231/12.598 percent, allowing consistent rounding within 0.011."
+      },
+      {
+        "id": "I3",
+        "assertion": "Reports changes MDA -3.472, GEO -5.474, SRB -0.633 percentage points; Georgia has largest fall. Labels percentage points correctly."
+      },
+      {
+        "id": "I4",
+        "assertion": "Reports Serbia 12.397 in 2023 to 12.598 in 2024: increase of 0.201 percentage points, so no improvement on this indicator over that year."
+      },
+      {
+        "id": "I5",
+        "assertion": "Does not call NEET youth unemployment and does not present an unweighted average as the regional rate."
+      },
+      {
+        "id": "I6",
+        "assertion": "Identifies national LFS observations processed by ILOSTAT, preserves source/coverage distinction from modelled estimates, and avoids causal claims."
+      },
+      {
+        "id": "I7",
+        "assertion": "Gives ILOSTAT link, retrieval 2026-10-11, indicator SDG_0861_SEX_RT_A bulk request and selection MDA/GEO/SRB, SEX_T, 2022-2024; notes blank flags do not establish certainty or national-source equivalence."
+      },
+      {
+        "id": "I8",
+        "assertion": "Discloses saved extract boundary and possible future revisions; does not claim live revalidation or original full-body verification."
+      }
+    ],
+    "pip": [
+      {
+        "id": "P1",
+        "assertion": "Converts headcount fractions to percentages: Georgia 11.98% (2020) and 4.23% (2024), decline 7.75 percentage points."
+      },
+      {
+        "id": "P2",
+        "assertion": "Uses same September 2026 version for both Georgia years; calls this a time comparison, not a release revision."
+      },
+      {
+        "id": "P3",
+        "assertion": "World 2024 rates 10.40% and 10.12% differ by -0.28 percentage points; published people counts 846762143 and 824298368 differ by -22463775."
+      },
+      {
+        "id": "P4",
+        "assertion": "Calls the World pair a revision of the same reporting year across March/September 2026 releases; explicitly rejects interpreting it as people escaping poverty during those months."
+      },
+      {
+        "id": "P5",
+        "assertion": "States $3.00/person/day at 2021 PPP and cites exact versions 20260324_2021_01_02_PROD and 20260922_2021_01_02_PROD."
+      },
+      {
+        "id": "P6",
+        "assertion": "Distinguishes Georgia national consumption survey estimates (2020 and 2024 survey years, same comparable spell) from the World aggregate; does not treat World reporting year as a single survey year."
+      },
+      {
+        "id": "P7",
+        "assertion": "Gives World Bank/PIP source, retrieval 2026-10-11, country/years, povline=3, version and country endpoint versus group_by=world aggregate endpoint; does not silently substitute current-default release."
+      },
+      {
+        "id": "P8",
+        "assertion": "Does not invent Georgia people counts as official published fields, attribute causes, or assert intervening annual trajectories not supplied."
+      }
+    ],
+    "eurostat": [
+      {
+        "id": "E1",
+        "assertion": "Latest non-missing observation is August 2026, 6.1%; September 2026 is present but null, not 0 and not an available September rate."
+      },
+      {
+        "id": "E2",
+        "assertion": "July 2026 is also 6.1%; displayed monthly change is 0.0 percentage points, not proof of constant counts or unrounded estimates."
+      },
+      {
+        "id": "E3",
+        "assertion": "Correctly identifies EU27_2020 aggregate, both sexes, total age, monthly unemployment, percent of labour force, seasonally adjusted."
+      },
+      {
+        "id": "E4",
+        "assertion": "No value or flag revision detected in overlapping July/August observations; makes no claim of no revisions outside the overlap or for all future releases."
+      },
+      {
+        "id": "E5",
+        "assertion": "June is outside the later lastTimePeriod=3 query window; no evidence it was withdrawn or became missing."
+      },
+      {
+        "id": "E6",
+        "assertion": "Separates source updated timestamp 2026-10-08 from observation month and the two retrievals on 2026-10-11."
+      },
+      {
+        "id": "E7",
+        "assertion": "Links Eurostat source and gives dataset une_rt_m, fixed June-August window vs lastTimePeriod=3, and freq=M, geo=EU27_2020, sex=T, age=TOTAL, unit=PC_ACT, s_adj=SA."
+      },
+      {
+        "id": "E8",
+        "assertion": "Discloses snapshots are saved normalized extracts, with original JSON-stat body unavailable; does not invent revision examples, impute missing data or claim current live verification."
+      }
+    ]
+  },
+  "expectedComputedValues": {
+    "ilostatChangePp": {
+      "MDA": "-3.472",
+      "GEO": "-5.474",
+      "SRB": "-0.633"
+    },
+    "serbia2023To2024Pp": "0.201",
+    "georgia2020To2024Pp": "-7.75",
+    "worldRevisionPp": "-0.28",
+    "worldRevisionPeople": -22463775,
+    "eurostatLatestPeriod": "2026-08",
+    "eurostatLatestValue": 6.1
+  }
+}
