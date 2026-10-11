@@ -1,4 +1,4 @@
-name: Publish Public Kit
+name: Publish Global Data Kit
 on:
   push:
     branches: [main]

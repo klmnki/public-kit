@@ -30,6 +30,6 @@ test('portable skill includes retained institutional sources and excludes remove
   for(const source of sources){assert.ok(skill.includes(source.documentationUrl),source.name);assert.ok(source.operator);assert.ok(source.request||source.discovery);}
   for(const name of ['Tavily','Mapbox','Open-Meteo','OpenAlex','OpenAQ','Frankfurter','Crossref','Google Earth Engine','Azure AI','GDELT','OpenStreetMap'])assert.ok(!skill.includes(name),name);
   assert.equal([...skill.matchAll(/\]\((?!https:\/\/|#)([^)]+)\)/g)].length,0);
-  assert.match(skill,/^---\r?\nname: public-kit\r?\n/);
+  assert.match(skill,/^---\r?\nname: global-data-kit\r?\n/);
   assert.ok(!skill.includes('Public API Marketplace'));
 });

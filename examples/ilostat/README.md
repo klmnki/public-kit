@@ -20,7 +20,7 @@ All selected records are labelled `LFS - Labour Force Survey`, with source codes
 
 ## Run
 
-From the Public Kit repository root:
+From the Global Data Kit repository root:
 
 ```sh
 node examples/ilostat/retrieve.mjs --save

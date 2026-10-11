@@ -1,16 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
-  <title id="title">Public Kit</title>
-  <desc id="desc">Use public data through a conversation. One SKILL.md for Codex and Claude Code, by Ievgen Kylymnyk.</desc>
-  <rect width="1280" height="360" fill="#17372f"/>
-  <path d="M64 280H1216" stroke="#48665c"/>
-  <text x="64" y="62" fill="#d9ecc4" font-family="Segoe UI,Arial,sans-serif" font-size="17" letter-spacing="1">CODEX + CLAUDE CODE</text>
-  <text x="58" y="177" fill="#fafbf8" font-family="Segoe UI,Arial,sans-serif" font-size="100" font-weight="600" letter-spacing="-5">Public Kit</text>
-  <text x="64" y="233" fill="#e0e8df" font-family="Segoe UI,Arial,sans-serif" font-size="27">Use public data through a conversation.</text>
-  <rect x="936" y="64" width="280" height="168" rx="6" fill="#d9ecc4"/>
-  <text x="964" y="120" fill="#17372f" font-family="Consolas,monospace" font-size="31">SKILL.md</text>
-  <path d="M964 143H1188" stroke="#9bac91"/>
-  <text x="964" y="180" fill="#17372f" font-family="Segoe UI,Arial,sans-serif" font-size="20">18 source guides</text>
-  <text x="964" y="210" fill="#17372f" font-family="Segoe UI,Arial,sans-serif" font-size="20">One file</text>
-  <text x="64" y="324" fill="#baccc2" font-family="Segoe UI,Arial,sans-serif" font-size="18">Ievgen Kylymnyk</text>
-  <text x="1216" y="324" text-anchor="end" fill="#baccc2" font-family="Segoe UI,Arial,sans-serif" font-size="18">Free institutional data Â· Open-source instructions</text>
+  <title id="title">Global Data Kit</title>
+  <desc id="desc">18 free institutional data guides for Codex and Claude Code, by Ievgen Kylymnyk.</desc>
+  <rect width="1280" height="360" fill="#FAF6EA"/>
+  <rect x="24" y="24" width="860" height="312" rx="9" fill="#005B42"/>
+  <text x="58" y="74" fill="#FAF6EA" font-family="Segoe UI,Arial,sans-serif" font-size="17" letter-spacing="1">CODEX + CLAUDE CODE</text>
+  <text x="54" y="178" fill="#FAF6EA" font-family="Segoe UI,Arial,sans-serif" font-size="88" font-weight="700" letter-spacing="-4">Global Data Kit</text>
+  <text x="58" y="234" fill="#FAF6EA" font-family="Segoe UI,Arial,sans-serif" font-size="26">Free institutional data guides.</text>
+  <text x="58" y="302" fill="#FAF6EA" font-family="Segoe UI,Arial,sans-serif" font-size="18">Ievgen Kylymnyk</text>
+  <rect x="900" y="24" width="356" height="182" rx="9" fill="#D5FF32"/>
+  <text x="928" y="119" fill="#06261D" font-family="Segoe UI,Arial,sans-serif" font-size="74" font-weight="700">18</text>
+  <text x="928" y="170" fill="#06261D" font-family="Segoe UI,Arial,sans-serif" font-size="25">source guides</text>
+  <rect x="900" y="222" width="356" height="114" rx="9" fill="#6949FF"/>
+  <text x="928" y="294" fill="#FFFFFF" font-family="Consolas,monospace" font-size="38">SKILL.md</text>
 </svg>

@@ -1,23 +1,25 @@
-# Install Public Kit
+# Install Global Data Kit
 
-Download [SKILL.md](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) and save it in a folder named `public-kit`. Keep the filename uppercase. The file includes instructions, 18 institutional source guides, example requests and the licence; it needs no companion files.
+Download [SKILL.md](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) and save it in a folder named `global-data-kit`. Keep the filename uppercase. The file includes instructions, 18 institutional source guides, example requests and the licence; it needs no companion files.
 
 | Client | In one project | For your projects on this machine |
 | --- | --- | --- |
-| Codex | `.agents/skills/public-kit/SKILL.md` | `~/.agents/skills/public-kit/SKILL.md` |
-| Claude Code | `.claude/skills/public-kit/SKILL.md` | `~/.claude/skills/public-kit/SKILL.md` |
+| Codex | `.agents/skills/global-data-kit/SKILL.md` | `~/.agents/skills/global-data-kit/SKILL.md` |
+| Claude Code | `.claude/skills/global-data-kit/SKILL.md` | `~/.claude/skills/global-data-kit/SKILL.md` |
 
 The `~` location is your user home. Use a project path to keep the skill with that project's files. Start a new session if the client has not discovered the added skill.
 
-Invoke `$public-kit` in Codex or `/public-kit` in Claude Code, then ask:
+Invoke `$global-data-kit` in Codex or `/global-data-kit` in Claude Code, then ask:
 
 > Compare population in Moldova, Georgia and Serbia from 2020 to 2024. Show the figures, calculate the change and include the source notes.
 
 Continue with another country, a shorter period or a different output. The assistant should preserve the context and retrieve new data as needed.
 
+If you installed the earlier Public Kit version, replace it with this file in `global-data-kit` and remove the old `public-kit` skill folder to avoid loading both. The repository and website addresses stay the same.
+
 ## Tools and access
 
-Your session needs an allowed way to fetch URLs or execute HTTP requests. Public Kit provides instructions; your client supplies the model, tools and network permissions. Without retrieval tools or network access, the assistant can prepare a query but cannot verify a live answer.
+Your session needs an allowed way to fetch URLs or execute HTTP requests. Global Data Kit provides instructions; your client supplies the model, tools and network permissions. Without retrieval tools or network access, the assistant can prepare a query but cannot verify a live answer.
 
 The included API and public-download routes are free within provider limits. NASA FIRMS needs a free MAP_KEY; Copernicus needs a free account, token and acceptance of the selected dataset's terms. Configure those credentials through your approved local secret storage. Most examples require no account. Your existing AI service's usage limits still apply.
 

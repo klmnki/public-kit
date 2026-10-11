@@ -19,4 +19,4 @@ const csv=[['country','iso3','year','population','unit','footnote','source_url',
 await writeFile('dist/public-kit-population-2020-2024.csv',csv);
 const sum=createHash('sha256').update(await readFile('SKILL.md')).digest('hex');
 await writeFile('dist/SHA256SUMS.txt',sum+'  SKILL.md\n');
-console.log('Built Public Kit site and identical standalone SKILL.md.');
+console.log('Built Global Data Kit site and identical standalone SKILL.md.');

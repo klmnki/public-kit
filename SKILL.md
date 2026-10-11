@@ -1,13 +1,13 @@
 ---
-name: public-kit
+name: global-data-kit
 description: "Use free institutional data APIs and downloads to answer public-data questions in ordinary language. Select a source, retrieve observations, check definitions and coverage, and return a sourced explanation, table, chart or file. Use for country comparisons, research context, repeat analyses or data for an application."
 license: MIT
 metadata:
   author: Ievgen Kylymnyk
-  version: "0.3.0-rc.1"
+  version: "0.3.1-rc.1"
 ---
 
-# Public Kit
+# Global Data Kit
 
 Help the user obtain and use public data through a conversation. Translate their question into suitable API requests or public-file selections, retrieve the data with the tools available in the session, and answer in ordinary language. Give them the underlying table or query when it helps them check or reuse the work.
 
@@ -410,7 +410,7 @@ Other useful prompts:
 
 ## Authorship and reuse
 
-Ievgen Kylymnyk wrote Public Kit to help people use institutional data in their existing assistant. The GenAI Builders work informed the question-to-data approach. An earlier [Civic Analytics Agent Workflow skill](https://github.com/sgarcese/Civic-Analytics-Agent-Workflow-Claude-Skill) prompted the idea of sharing the instructions as a skill. Public Kit is an independent project; the listed institutions do not endorse it. Provider datasets and documentation keep their own terms.
+Ievgen Kylymnyk wrote Global Data Kit to help people use institutional data in their existing assistant. The GenAI Builders work informed the question-to-data approach. An earlier [Civic Analytics Agent Workflow skill](https://github.com/sgarcese/Civic-Analytics-Agent-Workflow-Claude-Skill) prompted the idea of sharing the instructions as a skill. Global Data Kit is an independent project; the listed institutions do not endorse it. Provider datasets and documentation keep their own terms.
 
 ## Licence
 

@@ -1,12 +1,12 @@
-![Public Kit: use public data through a conversation](assets/banner.svg)
+![Global Data Kit: 18 institutional data guides](assets/banner.svg)
 
 **18 free institutional data guides for Codex and Claude Code.**
 
-By [Ievgen Kylymnyk](https://github.com/klmnki) · One SKILL.md · MIT · Preview 0.3.0-rc.1
+By [Ievgen Kylymnyk](https://github.com/klmnki) · One SKILL.md · MIT · Preview 0.3.1-rc.1
 
 [**Download SKILL.md**](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) · [Read the file](SKILL.md) · [See the examples](https://public-kit.klmnki.chatgpt.site/#examples) · [Browse sources](https://public-kit.klmnki.chatgpt.site/#sources)
 
-Describe what you need in ordinary language. Public Kit guides your assistant to select an institutional source, request real data, check what came back and explain the result. You can ask for a comparison, a chart, a CSV or a data connection for an app. You do not need to choose an API or know its parameter names first.
+Describe what you need in ordinary language. Global Data Kit guides your assistant to select an institutional source, request real data, check what came back and explain the result. You can ask for a comparison, a chart, a CSV or a data connection for an app. You do not need to choose an API or know its parameter names first.
 
 ## Repeat an analysis
 
@@ -45,11 +45,11 @@ Then continue: “Add Romania”, “Show the annual series”, or “Put this i
 Save [SKILL.md](https://raw.githubusercontent.com/klmnki/public-kit/main/SKILL.md) in your project:
 
 ```text
-Codex        .agents/skills/public-kit/SKILL.md
-Claude Code  .claude/skills/public-kit/SKILL.md
+Codex        .agents/skills/global-data-kit/SKILL.md
+Claude Code  .claude/skills/global-data-kit/SKILL.md
 ```
 
-Invoke `$public-kit` in Codex or `/public-kit` in Claude Code, followed by your question. [Installation details](docs/INSTALL.md) include personal installation paths.
+Invoke `$global-data-kit` in Codex or `/global-data-kit` in Claude Code, followed by your question. [Installation details](docs/INSTALL.md) include personal installation paths.
 
 The file contains the instructions, 18 source guides, example requests and licence. No companion files are required. Your session needs a tool that can fetch URLs or execute HTTP requests, with network access allowed.
 
@@ -65,7 +65,7 @@ These checks establish access for specific requests. We have not completed a con
 
 ## About the project
 
-My GenAI Builders work informed this approach: start with a practical question, connect useful data and check the result. [sgarcese's Civic Analytics Agent Workflow](https://github.com/sgarcese/Civic-Analytics-Agent-Workflow-Claude-Skill) inspired sharing the instructions as a skill. I wrote Public Kit as an independent personal project; the listed institutions do not endorse it.
+My GenAI Builders work informed this approach: start with a practical question, connect useful data and check the result. [sgarcese's Civic Analytics Agent Workflow](https://github.com/sgarcese/Civic-Analytics-Agent-Workflow-Claude-Skill) inspired sharing the instructions as a skill. I wrote Global Data Kit as an independent personal project; the listed institutions do not endorse it.
 
 [Contribute a correction or tested use case](CONTRIBUTING.md). Original instructions and code use the [MIT licence](LICENSE). Provider data retain their own terms; the World Bank example uses CC BY 4.0. See [NOTICE](NOTICE.md).
 

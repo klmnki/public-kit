@@ -14,7 +14,7 @@ Inspect the [dated snapshot](snapshots/eu-unemployment-2026-10-11T14-40-55-325Z.
 
 ## Run it
 
-You need Node.js 22 or later and internet access. The script uses built-in modules and Eurostat's public API; no packages or account are required. Run these commands from the Public Kit repository root:
+You need Node.js 22 or later and internet access. The script uses built-in modules and Eurostat's public API; no packages or account are required. Run these commands from the Global Data Kit repository root:
 
 ```sh
 node examples/eurostat/unemployment.mjs --from 2026-06 --to 2026-08
